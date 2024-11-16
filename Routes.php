@@ -3,11 +3,13 @@
 
 return [
 
+    /* Begin User Routes */
     [
         "url" => "/",
         "name" => "index",
-        'controller' => \Controllers\Index::class,
+        'controller' => \Controllers\UserControllers\HomeController::class,
         'method' => 'index'
     ],
+    /* End User Routes */
 
 ];

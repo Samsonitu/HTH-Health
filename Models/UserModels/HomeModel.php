@@ -1,10 +1,10 @@
 <?php
 
-namespace Models;
+namespace Models\UserModels;
 
 use Core\Model;
 
-class Users extends Model
+class HomeModel extends Model
 {
     public function getUsers()
     {
