@@ -6,7 +6,7 @@ return [
     [
         "url" => "/",
         "name" => "index",
-        'controller' => \Controllers\Index::class,
+        'controller' => \Controllers\DoctorControllers\DoctorDashBoard::class,
         'method' => 'index'
     ],
 
