@@ -3,17 +3,17 @@
 
     /* Cần nhúng file css nào thì sửa đường dẫn trong phần tử của extraCSS */
     $extraCSS = [                       
-        public_dir('css/DoctorCSS/DoctorStyle.css')
+        public_dir('css/EmployeeCSS/EmployeeStyle.css')
     ];
 
     /* Cần nhúng file js nào thì sửa đường dẫn trong phần tử của extraJS */
     $extraJS = [
-        public_dir('js/DoctorJS/DoctorScript.js')
+        public_dir('js/EmployeeJS/EmployeeScript.js')
     ];
 ?>
 
 <!-- Sửa lại đường dẫn thành "/../Tên đối tượng + Layouts/Tên đối tượng + tên file.php" -->
-<?php require_once __DIR__ . "/../DoctorLayouts/DoctorHeader.php"; ?>
+<?php require_once __DIR__ . "/../EmployeeLayouts/EmployeeHeader.php"; ?>
 
 <!-- Code phần main ở đây -->
 <div class="container-fuild">
@@ -26,9 +26,9 @@
         </article>
 
         <!-- Sidebar -->
-        <?php require_once __DIR__ . "/../DoctorLayouts/DoctorSidebar.php" ?>
+        <?php require_once __DIR__ . "/../EmployeeLayouts/EmployeeSidebar.php" ?>
     </div>
 </div>
 
 <!-- Sửa lại đường dẫn thành "/../Tên đối tượng + Layouts/Tên đối tượng + tên file.php" -->
-<?php require_once __DIR__ . "/../DoctorLayouts/DoctorFooter.php"; ?>
+<?php require_once __DIR__ . "/../EmployeeLayouts/EmployeeFooter.php"; ?>

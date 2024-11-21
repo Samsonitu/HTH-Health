@@ -1,6 +1,6 @@
 <?php
 
-namespace Models\DoctorModels;
+namespace Models\EmployeeModels;
 
 use Core\Model;
 
