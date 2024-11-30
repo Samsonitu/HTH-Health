@@ -1,5 +1,4 @@
-<footer>
-v </footer>
+<footer></footer>
 <?php
     if (!empty($extraJS)) {
         foreach ($extraJS as $js) {

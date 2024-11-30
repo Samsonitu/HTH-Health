@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $Title ?? "HTH HEALTH" ?></title>
-    <link rel="shortcut icon" href="<?php public_dir('img/logo/log-bg-white.png') ?>" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php public_dir('/img/logo/logo-bg-white.png') ?>" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -28,10 +28,29 @@
 
         <!-- Navigation -->
         <ul id="nav">
-            <li><a href=""><i class="fa-solid fa-file"></i> <span>Nav Item 1</span></a></li>
-            <li><a href=""><i class="fa-solid fa-file"></i> <span>Nav Item 1</span></a></li>
-            <li><a href=""><i class="fa-solid fa-file"></i> <span>Nav Item 1</span></a></li>
-            <li><a href=""><i class="fa-solid fa-file"></i> <span>Nav Item 1</span></a></li>
+            <li>
+                <a href="<?= route('MedicalTicketRoute')?>">
+                    <i class="fa-solid fa-notes-medical"></i> 
+                    <span>Phiếu khám bệnh</span>
+                </a>
+            </li>
+            <li>
+                <a href="<?= route('PatientRecordsRoute')?>">
+                    <i class="fa-solid fa-hospital-user"></i> 
+                    <span>Hồ sơ bệnh nhân</span>
+                </a>
+            </li>
+            <li>
+                <a href="/abc">
+                    <i class="fa-solid fa-stethoscope"></i> 
+                    <span>Chi tiết dịch vụ</span></a>
+                </li>
+            <li>
+                <a href="/abc">
+                    <i class="fa-solid fa-chart-pie"></i> 
+                    <span>Báo cáo</span>
+                </a>
+            </li>
         </ul>
         
         <!-- Avatar -->
