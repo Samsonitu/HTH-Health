@@ -69,22 +69,19 @@
 		<div class="header-menu">
 
 			<ul class="menu">
-				<li><a href="">Trang chủ</a></li>
+				<li><a href="/">Trang chủ</a></li>
 				<li><a href="">Giới thiệu</a></li>
-				<li><a href="">Chuyên khoa</a></li>
 				<li><a href="">Dịch vụ</a></li>
-				<li><a href="">Gói khám</a></li>
 				<li><a href="">Hỏi đáp bác sĩ</a></li>
 				<li><a href="">Tin tức</a></li>
-				<li><a href="">Hỗ trợ khách hàng</a></li>
-				<li><a href="">Liên hệ</a></li>
+				<li><a href="">Hỗ trợ</a></li>
+				<li>
+					<a href="<?=route('UserLoginRoute')?>">Đăng nhập</a> /
+					<a href="<?=route('UserLoginRoute')?>">Đăng ký</a>
+				</li>
 				<button name="navSchedule"><i class="fa-solid fa-calendar-days"></i>Đặt lịch</button>
 			</ul>
 
-		</div>
-
-		<div class="header-thumbnails">
-			<img src="/public/img/banner/0.png" id="slideImg">
 		</div>
 
 	</div>

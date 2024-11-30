@@ -136,15 +136,14 @@
 
 /* HEADER MENU */
 
-/* HEADER-THUMBNAILS */
 
-.header-thumbnails{
-	width: 80%;
-	margin: 0 auto;
+.thumbnails{
+	text-align: center;
+	width: 100%;
 }
 
-.header-thumbnails>img{
-	width: 95%;
+.thumbnails>img{
+	width: 75%;
 }
 
 /* HEADER-THUMBNAILS */

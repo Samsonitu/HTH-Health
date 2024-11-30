@@ -16,8 +16,9 @@ $extraJS = [
 <?php require_once __DIR__ . "/../UserLayouts/UserHeader.php"; ?>
 
 <!-- Code phần main ở đây -->
-<!-- <h2>Code Phần main</h2> -->
-
+<div class="thumbnails">
+	<img src="/public/img/banner/0.png" id="slideImg">
+</div>
 <div class="container">
 	<div class="info-utilities">
 

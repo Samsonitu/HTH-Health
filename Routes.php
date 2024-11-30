@@ -22,7 +22,7 @@ return [
 	[
 		"url" => "/UserLogin",
 		"name" => "UserLoginRoute",
-		'controller' => \Controllers\UserControllers\userLoginController::class,
+		'controller' => \Controllers\UserControllers\UserLoginController::class,
 		'method' => 'FormUserLogin'
 	],
 
