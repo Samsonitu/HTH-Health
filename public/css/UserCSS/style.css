@@ -541,56 +541,126 @@
 /* FORM-INFO */
 
 .Form-info{
-	width: 64%;
-	display: flex;
-	flex-direction: column;
+	width: 64.89%;
 	border: 1px solid #48a1d8;
 	padding: 10px 0 0 40px;
 }
 
-.Form-info>.guardian-info>.birth-gen,
-.Form-info>.patient-info>.birth-gen{
+.Form-info>.tab-form{
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab-form */
+.Form-info>.tab-form>.btn{
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.Form-info>.tab-form>.btn:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tab-formlink class */
+.Form-info>.tab-form>.btn.active {
+  background-color: #ccc;
+}
+
+/* Style the tab-form content */
+
+.Form-info>.register{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 10px 0 0 40px;
+}
+
+.Form-info>.registered{
+	width: 100%;
+	padding: 10px 0 0 40px;
+}
+
+.Form-info>.registered>.form-registered>input{
+	font-size: 18px;
+	border-radius: 20px;
+	margin: 15px 0 15px 0;
+	padding: 5px 0 5px 12px;
+}
+
+.Form-info>.registered>.form-registered>label{
+	font-size: 18px;
+}
+
+.Form-info>.registered>.form-registered>.namePatient{
+	margin-left:10px;
+}
+
+.Form-info>.registered>.form-registered>.idPatient{
+	margin-left:22px;
+}
+
+.Form-info>.register>.guardian-info>.birth-gen,
+.Form-info>.register>.patient-info>.birth-gen{
 	width: 79.7%;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	margin-bottom: 10px;
 }
-.Form-info>.guardian-info>.birth-gen>.birthday>input,
-.Form-info>.patient-info>.birth-gen>.birthday>input{
+.Form-info>.register>.guardian-info>.birth-gen>.birthday>input,
+.Form-info>.register>.patient-info>.birth-gen>.birthday>input{
 	border-radius: 20px;
-	padding-left: 5px;
+	padding-right: 5px;
 }
 
-.Form-info>.f-i>.p-g>label{
+.Form-info>.register>.f-i>.p-g>label{
 	font-size: 18px;
 }
 
-.Form-info>.f-i>.p-g>input, textarea{
+.Form-info>.register>.f-i>.p-g>input, textarea{
 	font-size: 18px;
 	border-radius: 20px;
 	margin: 5px 0 5px 0;
-	padding: 5px 0 5px 12px;
+	padding: 5px 0px 5px 12px;
 }
 
-.Form-info>.f-i>.p-g>textarea{
+.Form-info>.register>.f-i>.Time>label{
+	font-size: 18px;
+}
+
+.Form-info>.register>.f-i>.Time>input{
+	font-size: 18px;
+	border-radius: 20px;
+	margin: 5px 0 5px 0;
+	padding: 5px 5px 5px 12px;
+}
+
+.Form-info>.register>.f-i>.p-g>textarea{
 	width: 80%;
 	resize: none;
 }
 
-.Form-info>.f-i>.p-g>input{
+.Form-info>.register>.f-i>.p-g>input{
 	width: 80%;
 }
 
-.Form-info>.f-i>.p-g{
+.Form-info>.register>.f-i>.p-g{
 	margin: 0 0 20px 0;
 }
 
-.Form-info>.f-i>.p-l{
+.Form-info>.register>.f-i>.p-l{
 	float: right;
 }
 
-.Form-info>.service-exam>.exam{
+.Form-info>.register>.service-exam>.exam{
 	width: 80%;
 	margin: 10px 0 0 0;
 	display: flex;
@@ -598,13 +668,13 @@
 	margin: 0 0 20px 0;
 }
 
-.Form-info>.service-exam>.exam>.day-exam>.time,
-.Form-info>.service-exam>.exam>.day-exam>.date{
+.Form-info>.register>.service-exam>.exam>.day-exam>.time,
+.Form-info>.register>.service-exam>.exam>.day-exam>.date{
 	border-radius: 20px;
 	padding-left: 5px;
 }
 
-.Form-info>.service-exam>.exam>.box-select{
+.Form-info>.register>.service-exam>.exam>.box-select{
 	border: 1px solid black;
 	border-radius: 20px;
 	margin: 10px 0 10px 0;
@@ -612,24 +682,24 @@
 	padding: 8px 16px;
 }
 
-.Form-info>.service-exam>.exam>.box-select>.sv{
+.Form-info>.register>.service-exam>.exam>.box-select>.sv{
 	display: inline-block;
 	width: 30%;
 	margin-bottom: 1rem;
 }
 
-.Form-info>.service-exam>.exam>.exam-selected{
+.Form-info>.register>.service-exam>.exam>.exam-selected{
 	margin: 10px 0 10px 0;
 	font-size: 17px;
 }
 
-.Form-info>.manifest-patient{
+.Form-info>.register>.manifest-patient{
 	width: 80%;
 	margin: 10px 0 0 0;
 	margin: 0 0 20px 0;
 }
 
-.Form-info>.manifest-patient>.symptom{
+.Form-info>.register>.manifest-patient>.manifest{
 	width: 100%;
 	margin: 10px 0 0 0;
 	resize: none;
@@ -647,6 +717,8 @@
 	height: 50px;
 	border-radius: 20px;
 	float: right;
+
+	background-color: #ccc;
 }
 
 /* FORM-INFO */

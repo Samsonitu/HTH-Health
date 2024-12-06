@@ -28,4 +28,25 @@ var arrayImg = [];
 
 // INFO-SERVICE
 
+//TAB-FORM-APPOINTMENT
+
+function openTab(clickTab, formOpen) {
+  var i, openForm, btnTab;
+  openForm = document.getElementsByClassName("open-form");
+  for (i = 0; i < openForm.length; i++) {
+    openForm[i].style.display = "none";
+  }
+  btnTab = document.getElementsByClassName("btn-tab");
+  for (i = 0; i < btnTab.length; i++) {
+    btnTab[i].className = btnTab[i].className.replace(" active", "");
+  }
+  document.getElementById(formOpen).style.display = "block";
+  clickTab.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+
+//TAB-FORM-APPOINTMENT
+
 // CONTAINER

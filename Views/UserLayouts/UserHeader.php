@@ -7,6 +7,8 @@
 	<title><?= $Title ?? "HTH HEALTH" ?></title>
 	<link rel="shortcut icon" href="<?php public_dir('img/logo/log-bg-white.png') ?>" type="image/x-icon">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" integrity="sha512-9xKTRVabjVeZmc+GUW8GgSmcREDunMM+Dt/GrzchfN8tkwHizc5RP4Ok/MXFFy5rIjJjzhndFScTceq5e6GvVQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 	<?php
 	if (!empty($extraCSS)) {
 		foreach ($extraCSS as $css) {
@@ -76,8 +78,8 @@
 				<li><a href="">Tin tức</a></li>
 				<li><a href="">Hỗ trợ</a></li>
 				<li>
-					<a href="<?=route('UserLoginRoute')?>">Đăng nhập</a> /
-					<a href="<?=route('UserLoginRoute')?>">Đăng ký</a>
+					<a href="<?= route('UserLoginRoute') ?>">Đăng nhập</a> /
+					<a href="<?= route('UserLoginRoute') ?>">Đăng ký</a>
 				</li>
 				<button name="navSchedule"><i class="fa-solid fa-calendar-days"></i>Đặt lịch</button>
 			</ul>
