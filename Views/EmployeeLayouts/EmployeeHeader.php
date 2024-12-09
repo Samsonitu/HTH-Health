@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $Title ?? "HTH HEALTH" ?></title>
-    <link rel="shortcut icon" href="<?php public_dir('/img/logo/logo-bg-white.png') ?>" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo public_dir('/img/logo/logo-bg-white.png') ?>" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -41,6 +41,12 @@
                 </a>
             </li>
             <li>
+                <a href="<?= route('AppointmentRoute')?>">
+                    <i class="fa-regular fa-hourglass-half"></i>
+                    <span>Lịch hẹn</span>
+                </a>
+            </li>
+            <li>
                 <a href="/abc">
                     <i class="fa-solid fa-stethoscope"></i> 
                     <span>Chi tiết dịch vụ</span></a>
@@ -52,15 +58,17 @@
                 </a>
             </li>
         </ul>
+
+        <div id="counterName">Quầy khám số <?=$_SESSION['employeeInfo']['counterID']?></div>
         
         <!-- Avatar -->
         <div id="avatar">
             <i class="fa-solid fa-user"></i>
             <ul id="avatar__subnav">
-                <li><b>Bác sĩ</b> <br>Nguyễn Minh Thuyết</li>
+                <li><b>Nhân viên</b> <br><?=$_SESSION['employeeInfo']['employeeName']?></li>
                 <li><a href=""><i class="fa-regular fa-address-card"></i> Sửa thông tin</a></li>
                 <li><a href=""><i class="fa-regular fa-newspaper"></i> Hướng dẫn sử dụng</a></li>
-                <li><a href=""><i class="fa-solid fa-power-off"></i> Đăng Xuất</a></li>
+                <li><a href="<?=route('AccountStaffLogoutRoute')?>"><i class="fa-solid fa-power-off"></i> Đăng Xuất</a></li>
             </ul>
         </div>
     </header>

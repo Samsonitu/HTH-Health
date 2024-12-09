@@ -1,30 +1,3 @@
-// Begin handle Modal Add New Patient
-const btnOpenModalNewPatient = $('#btnOpenModalNewPatient');
-const modalFormNewPatient = $('#modalFormNewPatient');
-
-body.addEventListener('keyup', (event) => {
-    if(event.keyCode === 173) {
-        event.preventDefault(); 
-        const modalElement = document.getElementById('modalFormNewPatient');
-        const modalInstance = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
-
-        if (!modalElement.classList.contains('show')) {
-            modalInstance.show();
-        }
-    }
-
-    if(event.keyCode === 27) {
-        const modalElement = document.getElementById('modalFormNewPatient');
-        const modalInstance = bootstrap.Modal.getInstance(modalElement);
-
-        if (modalInstance && modalElement.classList.contains('show')) {
-        modalInstance.hide();
-        }
-    }
-});
-// End handle Modal Add New Patient
-
-
 // Begin handle search services
 // (add data-serviceID for every service__items)
 const serviceList = $$('.service__list .service__items'); 
