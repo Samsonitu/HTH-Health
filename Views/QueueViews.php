@@ -123,6 +123,11 @@
                                     .stt { font-size: 32px; font-weight: bold; color: #007BFF; margin: 20px 0; }
                                     #slogan { font-family: "Lobster", sans-serif; color: #2B6BFF; }
                                     span { text-align: end; }
+                                    @media print {
+                                        #printConfirm {
+                                            display: none;
+                                        }
+                                    }
                                 </style>
                             </head>
                             <body>

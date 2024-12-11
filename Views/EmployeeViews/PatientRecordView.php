@@ -258,7 +258,7 @@
                                                     <td>Đinh Thị Xuân</td>
                                                     <td>Đã khám</td>
                                                     <td>26/11/2024</td>
-                                                    <td>Nguyễn Thị Thanh Vân</td>
+                                                    <td>Nguyễn Thị Thanh Thảo</td>
                                                     <td><b>2.000.000đ</b></td>
                                                 </tr>
                                             </tbody>
@@ -433,8 +433,8 @@
             const guardianBirthday = calculateAgeAndFormat(patient.guardianBirthday);
             modalPatientDetails.querySelector('#patient-details--guardianBirthday').innerText = `: ${guardianBirthday.formattedBirthday} (${guardianBirthday.age} tuổi)`;
 
-            modalPatientDetails.querySelector('#patient-details--medicalHistory').innerText = `: ${patient.medicalHistory}`;
-            modalPatientDetails.querySelector('#patient-details--allergies').innerText = `: ${patient.allergies}`;
+            modalPatientDetails.querySelector('#patient-details--medicalHistory').innerText = `: ${patient.medicalHistory ? patient.medicalHistory : 'Chưa bổ sung'}`;
+            modalPatientDetails.querySelector('#patient-details--allergies').innerText = `: ${patient.allergies ? patient.allergies : 'Chưa bổ sung'}`;
 
             modalPatientDetails.querySelector('#patient-details--address').innerText = `: ${patient.address}`;
             modalPatientDetails.querySelector('#patient-details--phoneNumber').innerText = `: ${patient.phoneNumber}`;

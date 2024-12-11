@@ -62,7 +62,7 @@ function updateRegisteredServiceContainer() {
         return serviceItem ? serviceItem.getAttribute('data-service-name') : '';
     });
     registeredServiceContainer.value = selectedServiceNames.join(' - ');
-    hiddenServiceIDs.value = JSON.stringify(selectedServices);
+    hiddenServiceIDs.value = JSON.stringify(selectedServices); 
 }
 
 function updateTotalPrice() {

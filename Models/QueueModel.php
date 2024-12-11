@@ -8,28 +8,25 @@ class QueueModel extends Model
 {
     public function getTheQueueNo()
     {
-        $currentDate = date('Y-m-d');
         $Query = "SELECT * FROM queues
-                WHERE DATE(assignedTime) = '$currentDate'
+                WHERE DATE(assignedTime) = CURRENT_DATE()
                 ORDER BY assignedTime DESC LIMIT 1";
         return $this->SelectRow($Query);
     }
 
     public function getCounterStatus() {
-        $Query = "SELECT 
+        $Query = "SELECT
             c.counterID,
             c.counterName,
             COUNT(CASE 
-                WHEN DATE(q.assignedTime) = CURDATE() THEN 1 
-                ELSE NULL 
+                WHEN DATE(q.assignedTime) = CURDATE() AND q.status = 0 THEN 1
+                ELSE NULL
             END) AS currentQueueCount
-        FROM 
+        FROM
             counters AS c
-        LEFT JOIN 
-            queues AS q
-        ON 
-            c.counterID = q.counterID
-        GROUP BY 
+        LEFT JOIN
+            queues AS q ON c.counterID = q.counterID
+        GROUP BY
             c.counterID, c.counterName";
         return $this->SelectRow($Query);
     }

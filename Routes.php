@@ -11,6 +11,18 @@ return [
             'method' => 'index'
         ],
         [
+            "url" => "/nhan-vien/them-phieu-kham-benh/chua-dat-lich",
+            "name" => "MedicalTicketUnscheduledCreateRoute",
+            'controller' => \Controllers\EmployeeControllers\MedicalTicketController::class,
+            'method' => 'medicalTicketUnscheduledCreate'
+        ],
+        [
+            "url" => "/nhan-vien/them-phieu-kham-benh/da-dat-lich",
+            "name" => "MedicalTicketScheduledCreateRoute",
+            'controller' => \Controllers\EmployeeControllers\MedicalTicketController::class,
+            'method' => 'medicalTicketScheduledCreate'
+        ],
+        [
             "url" => "/nhan-vien/lay-danh-sach-hang-cho",
             "name" => "getTheQueueListRoute",
             'controller' => \Controllers\EmployeeControllers\MedicalTicketController::class,
@@ -22,7 +34,6 @@ return [
             'controller' => \Controllers\EmployeeControllers\MedicalTicketController::class,
             'method' => 'handleQueue'
         ],
-        
         [
             "url" => "/nhan-vien/them-benh-nhan-moi",
             "name" => "CreateNewPatientRoute",
@@ -92,5 +103,26 @@ return [
             'method' => 'insertAndUpdateAppointment'
         ],
     // End queue Route
+	
+    /* Begin User Routes */
+        [
+            "url" => "/",
+            "name" => "HomeRoute",
+            'controller' => \Controllers\UserControllers\HomeController::class,
+            'method' => 'index'
+        ],
+        [
+            "url" => "/dat-lich-kham",
+            "name" => "UserAppointmentRoute",
+            'controller' => \Controllers\UserControllers\AppointmentController::class,
+            'method' => 'Appointment'
+        ],
 
+        [
+            "url" => "/dang-nhap",
+            "name" => "UserLoginRoute",
+            'controller' => \Controllers\UserControllers\UserLoginController::class,
+            'method' => 'FormUserLogin'
+	    ],
+	/* End User Routes */
 ];

@@ -9,11 +9,15 @@ class PatientRecordController extends \Core\BaseController
     protected string $Model = "EmployeeModels\PatientRecordModel";
     public function index()
     {
+      $this->checkAuthEmployee();
+
       $listPatientGuardianInfo = $this->Database->getPatientGuardianInfo();
       view('EmployeeViews/PatientRecordView', compact('listPatientGuardianInfo'));
     }
 
     public function createNewPatient() {
+      $this->checkAuthEmployee();
+
       if(isset($_POST['createNewPatient']) && $_POST['createNewPatient']) {
         $patient = $_POST['patient']; 
         $guardian = $_POST['guardian']; 
@@ -31,4 +35,8 @@ class PatientRecordController extends \Core\BaseController
       redirect('PatientRecordsRoute');
     }
  
+    public function checkAuthEmployee()
+    {
+        if(!isset($_SESSION['employeeInfo']) && empty($_SESSION['employeeInfo'])) redirect('AccountStaffLoginRoute');
+    }
 }

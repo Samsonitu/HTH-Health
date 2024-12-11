@@ -94,9 +94,10 @@
                         </div>
                         <div class="section-patient__body px-3 mx-3">
                             <div class="tab-content">
-                                <form id="book" class="tab-pane active">
+                                <form id="book" action="<?=route('MedicalTicketUnscheduledCreateRoute')?>"  class="tab-pane active" method="POST">
                                     <div class="my-2 d-flex gap-3 align-items-center">
                                         <input type="hidden" name="queueID">
+                                        <input type="hidden" name="queueNo">
                                         <label for="" class="form-label w-25"><b class="text-danger">Mã bệnh nhân:</b></label>
                                         <div class="input-group w-50">
                                             <input type="text" class="form-control w-75" placeholder="Nhập mã bệnh nhân..." name="patientCode" required>
@@ -154,140 +155,137 @@
                                         <textarea class="form-control w-75" name="symptom" required></textarea>
                                     </div>
                                     <div class="my-2 d-flex gap-3 align-items-center">
-                                        <label for="" class="form-label w-25">Bác sĩ chỉ định:</label>
-                                        <select name="" class="form-select w-75">
-                                            <option value="">Bác sĩ 1</option>
-                                            <option value="">Bác sĩ 1</option>
-                                            <option value="">Bác sĩ 1</option>
-                                            <option value="">Bác sĩ 1</option>
-                                            <option value="">Bác sĩ 1</option>
-                                        </select>
-                                    </div>
-                                    <div class="my-2 d-flex gap-3 align-items-center">
                                         <label for="" class="form-label w-25">Chọn phòng khám:</label>
-                                        <select name="" class="form-select w-75" required>
-                                            <option value="">Phòng khám 1 - BS. Phạm Minh Khang (Số BN đang chờ: 1)</option>
-                                            <option value="">Phòng khám 2 - BS. Phạm Minh Khang (Số BN đang chờ: 1)</option>
-                                            <option value="">Phòng khám 3 - BS. Phạm Minh Khang (Số BN đang chờ: 1)</option>
-                                            <option value="">Phòng khám 4 - BS. Phạm Minh Khang (Số BN đang chờ: 1)</option>
-                                            <option value="">Phòng khám 5 - BS. Phạm Minh Khang (Số BN đang chờ: 1)</option>
+                                        <select name="roomID" class="form-select w-75" required>
+                                            <?php
+                                                if(isset($countPatientWaitExamined) && !empty($countPatientWaitExamined)) {
+                                                    foreach($countPatientWaitExamined as $room) {
+                                                        echo '
+                                                            <option value="'.$room['roomID'].'">
+                                                                Phòng khám '.$room['roomID'].' - BS. '.$room['doctorName'].' (Số BN đang chờ: '.$room['formCount'].')
+                                                            </option>
+                                                        ';
+                                                    }
+                                                }
+                                            ?>
                                         </select>
                                     </div>
                                     <div class="my-2 d-flex gap-3 align-items-center">
                                         <label for="" class="form-label w-25">Dịch vụ đăng ký:</label>
                                         <textarea name="selectedServiceNames" class="form-control w-75" disabled></textarea>
-                                        <input type="hidden" name="selectedServiceIDs[]" id="selectedServiceIDs" required />
+                                        <input type="hidden" name="selectedServiceIDs" id="selectedServiceIDs" required />
                                     </div>
                                     <div class="my-2 d-flex gap-3 align-items-center">
                                         <label for="" class="form-label w-25"><b>Tổng tiền:</b></label>
                                         <div class="w-75 text-start">
                                             <b id="total-price"></b>
-                                            <input type="hidden" name="total-price" id="total-price-input" value="0" required />
+                                            <input type="hidden" name="totalPrice" id="total-price-input" value="0" required />
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-end p-3">
-                                        <button type="submit" class="btn btn-success mx-1" id="btn-submit-form-book"><b>Hoàn Tất</b></button>
+                                        <input type="hidden" name="createAt">
+                                        <input type="submit" class="btn btn-success mx-1" id="btn-submit-form-book" value="Hoàn Tất">
                                         <button class="btn btn-danger mx-1" type="reset"><b>Hủy</b></button>
                                     </div>
                                 </form>
-                                <form id="booked" class="tab-pane fade">
+                                <form id="booked" action="<?=route('MedicalTicketScheduledCreateRoute')?>" class="tab-pane fade" method="POST">
                                     <div class="my-2 d-flex gap-3 align-items-center">
+                                        <input type="hidden" name="queueID">
+                                        <input type="hidden" name="queueNo">
                                         <label for="" class="form-label w-25"><b class="text-danger">Mã lịch hẹn:</b></label>
                                         <div class="input-group w-50">
-                                            <input type="text" class="form-control w-75" placeholder="Nhập mã lịch hẹn..." name="patientID" required>
-                                            <button class="btn btn-primary" style="font-weight: bold;"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                            <input type="text" class="form-control w-75" placeholder="Nhập mã lịch hẹn..." name="apptCode" required>
+                                            <button type="button" id="btn-findApptCode" class="btn btn-primary" style="font-weight: bold;"><i class="fa-solid fa-magnifying-glass"></i></button>
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="my-2 d-flex gap-3 align-items-center">
                                         <label for="" class="form-label w-25"><b class="text-danger">Mã bệnh nhân:</b></label>
-                                        <input type="text" name="" class="form-control w-75" disabled required>
+                                        <input type="text" name="patientCode" class="form-control w-75" readonly required>
                                     </div>
                                     <div class="my-2 d-flex gap-3 align-items-center">
                                         <label for="" class="form-label w-25">Tên bệnh nhân:</label>
-                                        <input type="text" class="form-control w-75" disabled required>
+                                        <input type="text" name="patientName" class="form-control w-75" disabled required>
                                     </div>
                                     <div class="my-2 d-flex">
                                         <div class="col-4 w-25 text-end">
                                             <label for="" class="form-label">Giới tính:</label>
-                                            <input class="text-center w-25" type="text" value="Nữ" disabled required> 
+                                            <input class="text-center w-25" name="patientGender" type="text" disabled required> 
                                         </div>
                                         <div class="col-4 text-end">
                                             <label for="" class="form-label">Năm sinh:</label>
-                                            <input class="text-center w-25" type="text" value="2020" disabled required>
+                                            <input class="text-center w-50" name="patientBirthday" type="text" disabled required>
                                         </div>
                                         <div class="col-4 text-end">
                                             <label for="" class="form-label">Tuổi:</label>
-                                            <input class="text-center w-25" type="text" value="4" disabled required>
+                                            <input class="text-center w-25" name="patientAge" type="text" disabled required>
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="my-2 d-flex gap-3 align-items-center">
                                         <label for="" class="form-label w-25">Tên người giám hộ:</label>
-                                        <input type="text" class="form-control w-75" disabled required>
+                                        <input type="text" class="form-control w-75" name="guardianName" disabled required>
                                     </div>
                                     <div class="my-2 d-flex">
                                         <div class="col-4 w-25 text-end">
                                             <label for="" class="form-label">Giới tính:</label>
-                                            <input class="text-center w-25" type="text" value="Nữ" disabled required> 
+                                            <input class="text-center w-25" name="guardianGender" type="text" disabled required> 
                                         </div>
                                         <div class="col-4 text-end">
                                             <label for="" class="form-label">Năm sinh:</label>
-                                            <input class="text-center w-25" type="text" value="2020" disabled required>
+                                            <input class="text-center w-50" name="guardianBirthday" type="text" disabled required>
                                         </div>
                                         <div class="col-4 text-end">
                                             <label for="" class="form-label">Tuổi:</label>
-                                            <input class="text-center w-25" type="text" value="4" disabled required>
+                                            <input class="text-center w-25" name="guardianAge" type="text" disabled required>
                                         </div>
                                     </div>
                                     <div class="my-2 d-flex gap-3 align-items-center">
                                         <label for="" class="form-label w-25">Số điện thoại:</label>
-                                        <input type="text" class="form-control w-75" disabled required>
+                                        <input type="text" class="form-control w-75" name="phoneNumber" disabled required>
                                     </div>
                                     <div class="my-2 d-flex gap-3 align-items-center">
                                         <label for="" class="form-label w-25">Địa chỉ:</label>
-                                        <textarea class="form-control w-75" disabled required></textarea>
+                                        <textarea class="form-control w-75" name="address" disabled required></textarea>
                                     </div>
                                     <hr>
                                     <div class="my-2 d-flex gap-3 align-items-center">
                                         <label for="" class="form-label w-25"><b class="text-danger">Triệu chứng:</b></label>
-                                        <textarea class="form-control w-75" required></textarea>
-                                    </div>
-                                    <div class="my-2 d-flex gap-3 align-items-center">
-                                        <label for="" class="form-label w-25">Bác sĩ chỉ định:</label>
-                                        <select name="" class="form-select w-75">
-                                            <option value=""></option>
-                                            <option value="">Bác sĩ 1</option>
-                                            <option value="">Bác sĩ 1</option>
-                                            <option value="">Bác sĩ 1</option>
-                                            <option value="">Bác sĩ 1</option>
-                                            <option value="">Bác sĩ 1</option>
-                                        </select>
+                                        <textarea class="form-control w-75" required name="symptom"></textarea>
                                     </div>
                                     <div class="my-2 d-flex gap-3 align-items-center">
                                         <label for="" class="form-label w-25">Chọn phòng khám:</label>
-                                        <select name="" class="form-select w-75" required>
-                                            <option value="">Phòng khám 1 (Khoa tổng quát) (Số BN đang chờ: 1)</option>
-                                            <option value="">Phòng khám 1 (Khoa tổng quát) (Số BN đang chờ: 1)</option>
-                                            <option value="">Phòng khám 1 (Khoa tổng quát) (Số BN đang chờ: 1)</option>
-                                            <option value="">Phòng khám 1 (Khoa tổng quát) (Số BN đang chờ: 1)</option>
-                                            <option value="">Phòng khám 1 (Khoa tổng quát) (Số BN đang chờ: 1)</option>
+                                        <select name="roomID" class="form-select w-75" required>
+                                            <?php
+                                                if(isset($countPatientWaitExamined) && !empty($countPatientWaitExamined)) {
+                                                    foreach($countPatientWaitExamined as $room) {
+                                                        echo '
+                                                            <option value="'.$room['roomID'].'">
+                                                                Phòng khám '.$room['roomID'].' - BS. '.$room['doctorName'].' (Số BN đang chờ: '.$room['formCount'].')
+                                                            </option>
+                                                        ';
+                                                    }
+                                                }
+                                            ?>
                                         </select>
+                                        <input type="hidden" name="doctorCode">
                                     </div>
                                     <div class="my-2 d-flex gap-3 align-items-center">
-                                        <label for="" class="form-label w-25">Dịch vụ đăng ký:</label>
-                                        <input type="text" class="form-control w-75" disabled required>
+                                        <label for="" class="form-label w-25">Dịch vụ đã đăng ký:</label>
+                                        <textarea name="selectedServiceNames" class="form-control w-75" disabled></textarea>
+                                        <input type="hidden" value="[]" name="selectedServiceIDs" id="selectedServiceIDs" required />
                                     </div>
                                     <div class="my-2 d-flex gap-3 align-items-center">
                                         <label for="" class="form-label w-25"><b>Tổng tiền:</b></label>
                                         <div class="w-75 text-start">
-                                            <b>1.000.000 VNĐ</b>
-                                            <b>(Đã thanh toán)</b>
-                                            <input type="hidden" name="total-price" required>
+                                            <b id="total-price"></b>
+                                            <span id="paymentStatus"></span>
+                                            <input type="hidden" name="totalPrice" id="total-price-input" value="0" required />
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-end p-3">
-                                        <button type="submit" class="btn btn-success mx-1" id="btn-submit-form-book"><b>Hoàn Tất</b></button>
+                                        <input type="hidden" name="createAt">
+                                        <input type="submit" class="btn btn-success mx-1" id="btn-submit-form-book" value="Hoàn tất">
                                         <button class="btn btn-danger mx-1" type="reset"><b>Hủy</b></button>
                                     </div>
                                 </form>
@@ -328,34 +326,85 @@
 
 <script>
     const counterContainer = document.querySelector('.section-waiting-list__body .tab-pane');
-    // document.querySelectorAll('medical-ticket-form .btn-success').addEventListener('click', function(e) {
-    //     e.preventDefault(); 
+    const formBook = document.querySelector('form#book');
+    const formBooked = document.querySelector('form#booked');
+    
+    const listServices = <?php echo json_encode($listServices) ?>;
+    const listDoctorInfo = <?php echo json_encode($listDoctorInfo) ?>;
+
+    const formatterPrice = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    });
+
+    formBook.addEventListener('submit', (event)=>{
+        event.preventDefault();
+        if(hiddenServiceIDs.value == "[]" || hiddenServiceIDs.value == "") {
+            alert('Phải chọn ít nhất một dịch vụ!!');
+            return
+        }
+        const currentDate = new Date().toLocaleString('en-US', { 
+            timeZone: 'Asia/Ho_Chi_Minh',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        });
+        const formattedDate = currentDate.slice(0, 20).replace(',', '');
+        formBooked.querySelector('input[name="createAt"]').value = formattedDate;
+
+        const formData = new FormData(formBook);
+        const formObject = Object.fromEntries(formData.entries());
+        openPrintMedicalForm(formObject, formBook);
+        window.onbeforeunload = function() {
+            formBook.reset();
+            serviceCheckBtnList.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            hiddenServiceIDs.value = "";
+            hiddenTotalPrice.value = "";
+            selectedServices = [];
+            totalPrice = 0;
+        };
+    })
+
+    formBooked.addEventListener('submit', (event)=>{
+        event.preventDefault();
+        const currentDate = new Date().toLocaleString('en-US', { 
+            timeZone: 'Asia/Ho_Chi_Minh',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        });
+        const formattedDate = currentDate.slice(0, 20).replace(',', '');
+        formBooked.querySelector('input[name="createAt"]').value = formattedDate;
         
-    //     // const formData = new FormData(this); 
-    //     // fetch('echo('SendDataMedicalFormRoute')', { 
-    //     //     method: 'POST',  
-    //     //     body: formData
-    //     // })
-    //     // .then(response => response.json()) 
-    //     // .then(data => {
-    //     //     if (data.success) {
-    //     //         console.log(data);
-    //                 openPrintMedicalForm();
-    //     //     } else {
-    //     //         alert("Lỗi khi gửi dữ liệu!");
-    //     //     }
-    //     // })
-    //     // .catch(error => {
-    //     //     console.error('Error:', error);
-    //     //     alert("Có lỗi xảy ra khi gửi dữ liệu.");
-    //     // });
-    // });
+        const formData = new FormData(formBooked);
+        const formObject = Object.fromEntries(formData.entries());
+        openPrintMedicalForm(formObject, formBooked);
+        window.onbeforeunload = function() {
+            formBooked.reset();
+            serviceCheckBtnList.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            hiddenServiceIDs.value = "";
+            hiddenTotalPrice.value = "";
+            selectedServices = [];
+            totalPrice = 0;
+        };
+    })
 
     // Begin handle open print medical form 
-        function openPrintMedicalForm(data) {
+        function openPrintMedicalForm(data, form) {
             const printWindow = window.open('', '', 'width=560,height=794');
             const printContent = layoutPrintMedicalForm(data);
-
             printWindow.document.write(
                 `<html>
                     <head>
@@ -384,12 +433,38 @@
             printWindow.document.write(printContent);
             printWindow.document.write('</body></html>');
             printWindow.document.close();
-            printWindow.print();
+
+            printWindow.document.getElementById("printConfirm").addEventListener("click", function() {
+                // Khi nhấn "In phiếu", tiến hành in và gọi callback
+                printWindow.print();
+
+                // Đảm bảo sự kiện `onafterprint` được kích hoạt sau khi in
+                printWindow.onafterprint = function() {
+                    console.log("In đã hoàn tất.");
+                    form.submit(); // Thực hiện callback sau khi in xong
+                    printWindow.close(); // Đóng cửa sổ in
+                };
+
+                // Giả lập sự kiện `onafterprint` nếu không có máy in
+                // setTimeout(function() {
+                //     console.log("In đã hoàn tất (Giả lập).");
+                //     callback(); // Thực hiện callback sau khi in xong
+                //     printWindow.close(); // Đóng cửa sổ in
+                // }, 3000); // Chờ 3 giây để giả lập quá trình in
+            });
         }
     // End handle open print medical form 
 
     // Begin write html to medical form print
-        function layoutPrintMedicalForm() {
+        function layoutPrintMedicalForm(data) {
+            let curentPatientInfo = listPatientGuardianInfo.find((element)=> element.patientCode == data.patientCode); 
+            let patientBirthday = new Date(curentPatientInfo.patientBirthday);
+            let guardianBirthday = new Date(curentPatientInfo.guardianBirthday);
+            data.selectedServiceIDs = JSON.stringify(data.selectedServiceIDs);
+            let selectedServiceInfo = listServices.filter((service) => 
+                JSON.parse(data.selectedServiceIDs).includes(service.serviceID)
+            );
+
             return `
                 <div id="medicalTicketContainer" class="container border p-4 shadow-sm">
                 <div class="d-flex flex-column align-items-center">
@@ -398,26 +473,26 @@
                 </div>                
                 <h5 class="text-center"><b>PHIẾU KHÁM BỆNH </b></h5>
                 <div class="d-flex justify-content-between">
-                    <p class="mb-0 mt-1"><b>Mã bệnh nhân: </b>#BN01345</p>
-                    <p class="mb-0 mt-1"><b>Ngày khám: </b>01/02/2024</p>
+                    <p class="mb-0 mt-1"><b>Mã bệnh nhân: </b>${data.patientCode}</p>
+                    <p class="mb-0 mt-1"><b>Ngày khám: </b>${data.createAt}</p>
                 </div>
                 <hr>
 
                 <!-- Info Section1s -->
                 <div class="info-section mb-4">
                     <div class="d-flex justify-content-between">
-                        <p><strong>Họ tên:</strong> Phạm Ngọc Huấn </p>
-                        <p><strong>Giới tính:</strong> Nam</p>
-                        <p><strong>Tuổi:</strong> 18</p>
+                        <p><strong>Họ tên:</strong> ${curentPatientInfo.patientName} </p>
+                        <p><strong>Giới tính:</strong> ${curentPatientInfo.patientGener == 'man' ? 'Nam' : 'Nữ'}</p>
+                        <p><strong>Tuổi:</strong> ${calculateAge(patientBirthday)}</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p><strong>Người giám hộ:</strong> Phạm Ngọc Huấn </p>
-                        <p><strong>Giới tính:</strong> Nam</p>
-                        <p><strong>Tuổi:</strong> 18</p>
+                        <p><strong>Người giám hộ:</strong> ${curentPatientInfo.guardianName} </p>
+                        <p><strong>Giới tính:</strong> ${curentPatientInfo.guardianGender == 'man' ? 'Nam' : 'Nữ'}</p>
+                        <p><strong>Tuổi:</strong> ${calculateAge(guardianBirthday)}</p>
                     </div>
-                    <p><strong>Địa chỉ:</strong> 505 Minh Khai, Hai Bà Trưng, Hà Nội</p>
-                    <p><strong>Số điện thoại:</strong> 0123456789</p>
-                    <p><strong>Triệu chứng lâm sàng:</strong> Đau bụng</p>
+                    <p><strong>Địa chỉ:</strong> ${curentPatientInfo.address}</p>
+                    <p><strong>Số điện thoại:</strong> ${curentPatientInfo.phoneNumber}</p>
+                    <p><strong>Triệu chứng lâm sàng:</strong> ${data.symptom}</p>
                 </div>
 
                 <!-- Table Section -->
@@ -426,30 +501,21 @@
                         <tr>
                             <th>STT</th>
                             <th>Tên Dịch Vụ</th>
-                            <th>SL</th>
                             <th>Đơn giá</th>
-                            <th>Thành tiền</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="text-center">1</td>
-                            <td>Khám dinh dưỡng</td>
-                            <td class="text-center">1</td>
-                            <td class="text-end">1.000.000đ</td>
-                            <td class="text-end">1.000.000đ</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">2</td>
-                            <td>Khám dinh dưỡng</td>
-                            <td class="text-center">1</td>
-                            <td class="text-end">1.000.000đ</td>
-                            <td class="text-end">1.000.000đ</td>
-                        </tr>
+                        ${selectedServiceInfo.map((element, index) => `
+                            <tr>
+                                <td class="text-center">${index + 1}</td>
+                                <td>${element.serviceName}</td>
+                                <td class="text-end">${formatterPrice.format(element.price)}</td>
+                            </tr>
+                        `).join('')}
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="5" class="text-end fw-bold">Tổng tiền: 2.000.000đ</td>
+                            <td colspan="4" class="text-end fw-bold">Tổng tiền: ${formatterPrice.format(data.totalPrice)}</td>
                         </tr>
                     </tfoot>
                 </table>
@@ -457,10 +523,11 @@
                 <!-- Footer -->
                 <div class="footer mt-4 text-center">
                     <p class="fw-bold mb-2">STT</p>
-                    <p class="display-6  text-success mb-2">0103</p>
-                    <p class="text-muted">Phòng khám 1</p>
+                    <p class="display-6  text-success mb-2">${data.queueNo}</p>
+                    <p class="text-muted">Phòng khám số ${data.roomID}</p>
                 </div>
             </div>
+            <button id="printConfirm">In phiếu</button>
             `;
         }
 
@@ -491,16 +558,18 @@
         // setInterval(callAjax, 5000);  
     // End call ajax queues for sidebar
 
-    // Begin function btn find patientCode
+    // Begin function btn find patient code
         const listPatientGuardianInfo = <?php echo(json_encode($listPatientGuardianInfo)); ?> 
-        const formBook = document.querySelector('form#book');
         const btnFindPatientCode = formBook.querySelector('#btn-findPatientCode');
         btnFindPatientCode.onclick = () => {
-            const patientCodeInput = document.querySelector('form#book input[name="patientCode"]').value;
-            findPatientGuardianInfo(patientCodeInput);
+            console.log(document.querySelector('#receivingPatientQueueNo'));
+            if(document.querySelector('#receivingPatientQueueNo').innerText != "") {
+                const patientCodeInput = document.querySelector('form#book input[name="patientCode"]').value;
+                findPatientGuardianInfo(patientCodeInput);
+            }
         }
 
-    // End function btn find patientCode
+    // End function btn find patient code
 
     // Begin function find patientInfo 
         function findPatientGuardianInfo (patientCode) {
@@ -514,7 +583,167 @@
         }
     // End function patietnInfo
 
-    // Begin function render medical ticket form
+    // Begin function btn find appointment code 
+        const listAppointmentInfo = <?php echo json_encode($listAppointment) ?>;
+        console.log(listAppointmentInfo);
+        const btnFindApptCode = formBooked.querySelector('#btn-findApptCode');
+        btnFindApptCode.onclick = () => {
+            if(document.querySelector('#receivingPatientQueueNo').innerText != "") {
+                const apptCodeInput = formBooked.querySelector('input[name="apptCode"]').value;
+                findAppointmentInfo(apptCodeInput);
+            }
+        }
+    // End function btn find appointment code 
+
+    // Begin function find appointment code
+        function findAppointmentInfo(apptCode) {
+            let resultFind = listAppointmentInfo.find((element) => element.apptCode == apptCode);
+            if(!resultFind) {
+                formBooked.reset();
+                alert("Mã lịch hẹn không tồn tại!");
+                return;
+            }
+            if(resultFind.status == '2') {
+                alert("Mã lịch hẹn đã được sử dụng!");
+                return;
+            } 
+            let patientGuardianInfo = listPatientGuardianInfo.find((element)=> element.patientCode == resultFind.patientCode)
+            renderMedicalTicketFormBooked(patientGuardianInfo, resultFind);
+        }
+    // End function find appointment code
+    
+    // Begin function render medical ticket form booked
+        function renderMedicalTicketFormBooked(patientGuardianInfo, appointmentInfo) {
+            formBooked.querySelector('input[name="patientCode"]').value = patientGuardianInfo.patientCode;
+
+            // Hiển thị tên bệnh nhân
+            formBooked.querySelector('input[name="patientName"]').value = patientGuardianInfo.patientName ? patientGuardianInfo.patientName : "";
+
+            // Hiển thị giới tính bệnh nhân
+            formBooked.querySelector('input[name="patientGender"]').value = patientGuardianInfo.patientGender === 'man' ? "Nam" : "Nữ";
+            
+            // Hiển thị ngày sinh bệnh nhân theo định dạng dd-mm-yyyy
+            if (patientGuardianInfo.patientBirthday) {
+                const birthday = new Date(patientGuardianInfo.patientBirthday);
+                const day = String(birthday.getDate()).padStart(2, '0');
+                const month = String(birthday.getMonth() + 1).padStart(2, '0');
+                const year = birthday.getFullYear();
+                formBooked.querySelector('input[name="patientBirthday"]').value = `${day}-${month}-${year}`;
+            }
+
+            // Tính toán tuổi bệnh nhân
+            if (patientGuardianInfo.patientBirthday) {
+                const birthday = new Date(patientGuardianInfo.patientBirthday);
+                const age = calculateAge(birthday);
+                formBooked.querySelector('input[name="patientAge"]').value = age;
+            }
+
+            // Hiển thị tên người giám hộ
+            formBooked.querySelector('input[name="guardianName"]').value = patientGuardianInfo.guardianName ? patientGuardianInfo.guardianName : "";
+
+            // Hiển thị giới tính người giám hộ
+            formBooked.querySelector('input[name="guardianGender"]').value = patientGuardianInfo.guardianGender === 'man' ? "Nam" : "Nữ";
+
+            if (patientGuardianInfo.guardianBirthday) {
+                const birthday = new Date(patientGuardianInfo.guardianBirthday);
+                const day = String(birthday.getDate()).padStart(2, '0');
+                const month = String(birthday.getMonth() + 1).padStart(2, '0');
+                const year = birthday.getFullYear();
+                formBooked.querySelector('input[name="guardianBirthday"]').value = `${day}-${month}-${year}`;
+            }
+
+            // Tính toán tuổi người giám hộ
+            if (patientGuardianInfo.guardianBirthday) {
+                const guardianBirthday = new Date(patientGuardianInfo.guardianBirthday);
+                const guardianAge = calculateAge(guardianBirthday);
+                formBooked.querySelector('input[name="guardianAge"]').value = guardianAge;
+            }
+
+            // Hiển thị số điện thoại người giám hộ
+            formBooked.querySelector('input[name="phoneNumber"]').value = patientGuardianInfo.phoneNumber ? patientGuardianInfo.phoneNumber : "";
+
+            // Hiển thị địa chỉ người giám hộ
+            formBooked.querySelector('textarea[name="address"]').value = patientGuardianInfo.address ? patientGuardianInfo.address : "";
+
+            // Hiển thị triệu chứng khai báo trước đó
+            formBooked.querySelector('textarea[name="symptom"]').value = appointmentInfo.symptom;
+
+            let listPreSelectedService = listServices.filter((service) => 
+                appointmentInfo.services.includes(service.serviceID)
+            );
+
+            formBooked.querySelector('textarea[name="selectedServiceNames"]').value = listPreSelectedService.map(element => element.serviceName).join(' - ');
+            formBooked.querySelector('input[name="selectedServiceIDs"]').value = `[${appointmentInfo.services}]`;
+
+            formBooked.querySelector('#total-price').innerText = formatterPrice.format(appointmentInfo.totalPrice);
+            formBooked.querySelector('input[name="totalPrice"]').value = appointmentInfo.totalPrice;
+
+            let preAppointedDoctor = listDoctorInfo.find((element)=> element.doctorCode = appointmentInfo.doctorCode);
+            let listRoom = formBooked.querySelectorAll('select[name="roomID"] option');
+            if(preAppointedDoctor) {
+                listRoom.forEach((element)=>{
+                    if (element.value === preAppointedDoctor.roomID) { 
+                        element.selected = true; element.setAttribute('disabled', false); 
+                    } else { element.setAttribute('disabled', true);}
+                })
+            }
+
+            formBooked.querySelector('#paymentStatus').innerText = appointmentInfo.paymentStatus == '0' ? 'Chưa thanh toán' : 'Đã thanh toán';
+        }
+    // Begin function render medical tocket form booked
+
+    // Begin function listener tab pane active
+        const formObserver = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    const target = mutation.target;
+                    
+                    // Check if the form does NOT have 'active' class
+                    if (!target.classList.contains('active')) {
+                        if (target.id === 'book') {
+                            resetBookForm();
+                        } else if (target.id === 'booked') {
+                            resetBookedForm();
+                        }
+                    }
+                }
+            });
+        });
+
+        formObserver.observe(formBook, { 
+            attributes: true, 
+            attributeFilter: ['class'] 
+        });
+
+        formObserver.observe(formBooked, { 
+            attributes: true, 
+            attributeFilter: ['class'] 
+        });
+    // End function listener tab pane active
+
+    // Begin function reset form book
+        function resetBookForm() {
+            console.log('resetBookForm');
+            serviceCheckBtnList.forEach((element) => {
+                element.checked = false;
+            });
+            selectedServices = [];
+            totalPrice = 0;
+            updateRegisteredServiceContainer();
+            updateTotalPrice();
+        }
+    // End function reset form book
+
+    // Begin function reset form booked
+        function resetBookedForm() {
+            formBooked.querySelector('#paymentStatus').innerText = '';
+            formBooked.querySelector('#selectedServiceIDs').value = '[]';
+            formBooked.querySelector('#total-price').innerText = '';
+            formBooked.querySelector('input[name="totalPrice"]').value = '';
+        }
+    // End function reset form booked
+
+    // Begin function render medical ticket form book
         function renderMedicalTicketFormBook(patientGuardianInfo) {
             // Hiển thị tên bệnh nhân
             document.querySelector('form#book input[name="patientName"]').value = patientGuardianInfo.patientName ? patientGuardianInfo.patientName : "";
@@ -565,7 +794,7 @@
             // Hiển thị địa chỉ người giám hộ
             document.querySelector('form#book textarea[name="address"]').value = patientGuardianInfo.address ? patientGuardianInfo.address : "";
         }
-    // End function render medical ticket form
+    // End function render medical ticket form book
 
     // Begin function calculate Age
         function calculateAge(birthday) {
@@ -625,7 +854,12 @@
                 document.querySelector('#receivingPatientName').innerText = activeQueueInfo.patientName;
                 document.querySelector('#receivingPatientQueueNo').innerText = activeQueueInfo.queueNo;
                 document.querySelector('#receivingPatientType').innerText = activeQueueInfo.apptID == '0' ? "Chưa đặt lịch" : "Đã đặt lịch";
+
                 document.querySelector('form#book input[name="queueID"]').value = activeQueueInfo.queueID;
+                document.querySelector('form#book input[name="queueNo"]').value = activeQueueInfo.queueNo;
+
+                document.querySelector('form#booked input[name="queueID"]').value = activeQueueInfo.queueID;
+                document.querySelector('form#booked input[name="queueNo"]').value = activeQueueInfo.queueNo;
             }
         }
     // End function render field need queue list Data

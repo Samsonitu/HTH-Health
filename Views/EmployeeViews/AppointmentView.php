@@ -48,7 +48,7 @@
                                         <th rowspan="2">#</th>
                                         <th rowspan="2">Mã lịch hẹn</th>
                                         <th rowspan="2">Mã bệnh nhân</th>
-                                        <th colspan="6" class="border-bottom">Thông tin liên lạc tạm</th>
+                                        <th colspan="7" class="border-bottom">Thông tin liên lạc tạm</th>
                                         <th rowspan="2">Thời gian tạo</th>
                                         <th rowspan="2">Trạng thái</th>
                                         <th rowspan="2">Sửa</th>
@@ -61,6 +61,7 @@
                                         <th>Triệu chứng</th>
                                         <th>Người giám hộ</th>
                                         <th>Điện thoại</th>
+                                        <th>Đặt lịch lúc</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -105,7 +106,8 @@
                                                     <td><?= htmlspecialchars($appointment['symptom']) ?></td>
                                                     <td><?= htmlspecialchars($appointment['guardianName']) ?></td>
                                                     <td><?= htmlspecialchars($appointment['phoneNumber']) ?></td>
-                                                    <td><?= htmlspecialchars($appointment['patientCode'] ?? '') ?></td>
+                                                    <td><?= htmlspecialchars($appointment['apptTime']) ?></td>
+                                                    <td><?= htmlspecialchars($appointment['createAt'] ?? '') ?></td>
                                                     <td>
                                                         <?php  
                                                         if(htmlspecialchars($appointment['status']) == '-1') {
@@ -120,6 +122,7 @@
                                                     <td><i class="fa-solid fa-pen-to-square"></i></td>
                                                     <td><i class="fa-regular fa-trash-can"></i></td>
                                                     <input type="hidden" name="apptID" value="<?= htmlspecialchars($appointment['apptID']) ?>">
+                                                    <input type="hidden" name="apptTime" value="<?= htmlspecialchars($appointment['apptTime']) ?>">
                                                 </tr>
                                                 <?php
                                             }
@@ -307,9 +310,15 @@
                                 </div>
                                 <div class="row">
                                     <div class="appointment-details__content">
+                                        <div class="appointment-details__title">Thời gian hẹn</div>
+                                        <input type="datetime-local" name="apptTime" class="form-control" id="appointment-details--apptTime">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="appointment-details__content">
                                         <div class="appointment-details__title">Chọn bác sĩ</div>
                                         <select name="doctorCode" class="form-select">
-                                            <option value="">Chọn sau</option>
+                                            <option value="">---</option>
                                             <?php
                                                 if(isset($listDoctorInfo) && !empty($listDoctorInfo)) {
                                                     foreach($listDoctorInfo as $doctor) {
@@ -346,6 +355,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
+                                <input type="hidden" id="appointment-details--apptID" name="apptID">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                                 <input type="submit" class="btn btn-primary" id="btnConfirmCreateApptCode" name="createNewApptCode" value="Xác nhận">
                             </div>
@@ -380,17 +390,18 @@
     rowAppointmentData.forEach((element, index) => {
         element.addEventListener('click', (event) => {
             if (event.target.classList.contains('btn-success')) {
-                const currentRow = rowAppointmentData[index];
-                if(currentRow.querySelector('td:nth-child(3n) button')) {
+                if(element.querySelector('td:nth-child(3n) button')) {
                     alert('Vui lòng cập nhật mã bệnh nhân trước!!!');
                     return;
                 }
-                const currentPatientCode = currentRow.querySelector('td:nth-child(3n)').innerText;
-                const symptom = currentRow.querySelector('td:nth-child(7n)').innerText;
+                const currentPatientCode = element.querySelector('td:nth-child(3n)').innerText;
+                const symptom = element.querySelector('td:nth-child(7n)').innerText;
+                const apptTime = element.querySelector('input[name="apptTime"]').value;
+                const curentApptIDTarget = element.querySelector('input[name="apptID"]').value; 
                 const modalElement = document.getElementById('modalCreateAppointmentCode');
                 const modalInstance = new bootstrap.Modal(modalElement);
                 modalInstance.show();
-                renderModalCreateAppointment(currentPatientCode, symptom);
+                renderModalCreateAppointment(currentPatientCode, symptom, apptTime, curentApptIDTarget);
             }
 
             if (event.target.classList.contains('btn-warning')) {
@@ -399,7 +410,6 @@
                 const modalInstance = new bootstrap.Modal(modalElement);
                 modalElement.querySelector('form').reset();
                 modalInstance.show();
-                modalElement.querySelector('input[name="currentApptID"]').value = curentApptIDTarget;
                 modalElement.querySelector('input[name="currentApptID"]').value = curentApptIDTarget;
             }
         })
@@ -472,12 +482,14 @@
 
     // Begin function render modal create appointment
         const modalCreateAppointmentCode = document.querySelector('#modalCreateAppointmentCode');
-        function renderModalCreateAppointment(patientCode, symptom) {
+        function renderModalCreateAppointment(patientCode, symptom, apptTime, curentApptIDTarget) {
             let currentPatientInfo = listPatientGuardianInfo.find((element)=> element.patientCode == patientCode);
             modalCreateAppointmentCode.querySelector('#appointment-details--patientName').innerText = currentPatientInfo.patientName;
             modalCreateAppointmentCode.querySelector('#appointment-details--patientGender').innerText = currentPatientInfo.patientGender == 'man' ? 'Nam' : 'Nữ';
             modalCreateAppointmentCode.querySelector('#appointment-details--patientBirthday').innerText = currentPatientInfo.patientBirthday;
             modalCreateAppointmentCode.querySelector('#appointment-details--symptom').innerText = symptom;
+            modalCreateAppointmentCode.querySelector('#appointment-details--apptTime').value = apptTime;
+            modalCreateAppointmentCode.querySelector('#appointment-details--apptID').value = curentApptIDTarget;
         }
     // End function render modal create appointment
 
