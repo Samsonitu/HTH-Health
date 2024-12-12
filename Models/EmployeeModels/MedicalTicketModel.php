@@ -118,11 +118,10 @@ class MedicalTicketModel extends Model
                 break;
             }
         } while (true);
-        $doctorCode = $this->getDoctorInfo($info['roomID']);
 
         $info['createAt'] = date('Y-m-d H:i:s', strtotime($info['createAt']));
-        $Query3 = "INSERT INTO `medical_form`(`formID`, `patientCode`, `doctorCode`, `empCode`, `roomID`, `formCode`, `symptom`, `totalPrice`, `createAt`, `status`) 
-        VALUES ('','{$info['patientCode']}','{$doctorCode['0']['doctorCode']}','$empCode','{$info['roomID']}','$formCode','{$info['symptom']}','{$info['totalPrice']}','{$info['createAt']}','')
+        $Query3 = "INSERT INTO `medical_form`(`formID`, `patientCode`, `doctorCode`, `empCode`, `formCode`, `symptom`, `totalPrice`, `createAt`, `status`) 
+        VALUES ('','{$info['patientCode']}','{$info['doctorCode']}','$empCode','$formCode','{$info['symptom']}','{$info['totalPrice']}','{$info['createAt']}','')
         ";
         $result3 = $this->InsertRow($Query3, [], true);
         echo '<br>result3'. $result3;

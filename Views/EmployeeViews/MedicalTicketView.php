@@ -155,13 +155,13 @@
                                         <textarea class="form-control w-75" name="symptom" required></textarea>
                                     </div>
                                     <div class="my-2 d-flex gap-3 align-items-center">
-                                        <label for="" class="form-label w-25">Chọn phòng khám:</label>
-                                        <select name="roomID" class="form-select w-75" required>
+                                        <label for="" class="form-label w-25">Chọn bác sĩ:</label>
+                                        <select name="doctorCode" class="form-select w-75" required>
                                             <?php
                                                 if(isset($countPatientWaitExamined) && !empty($countPatientWaitExamined)) {
                                                     foreach($countPatientWaitExamined as $room) {
                                                         echo '
-                                                            <option value="'.$room['roomID'].'">
+                                                            <option value="'.$room['doctorCode'].'">
                                                                 Phòng khám '.$room['roomID'].' - BS. '.$room['doctorName'].' (Số BN đang chờ: '.$room['formCount'].')
                                                             </option>
                                                         ';
@@ -254,13 +254,13 @@
                                         <textarea class="form-control w-75" required name="symptom"></textarea>
                                     </div>
                                     <div class="my-2 d-flex gap-3 align-items-center">
-                                        <label for="" class="form-label w-25">Chọn phòng khám:</label>
-                                        <select name="roomID" class="form-select w-75" required>
+                                        <label for="" class="form-label w-25">Chọn bác sĩ:</label>
+                                        <select name="doctorCode" class="form-select w-75" required>
                                             <?php
                                                 if(isset($countPatientWaitExamined) && !empty($countPatientWaitExamined)) {
                                                     foreach($countPatientWaitExamined as $room) {
                                                         echo '
-                                                            <option value="'.$room['roomID'].'">
+                                                            <option value="'.$room['doctorCode'].'">
                                                                 Phòng khám '.$room['roomID'].' - BS. '.$room['doctorName'].' (Số BN đang chờ: '.$room['formCount'].')
                                                             </option>
                                                         ';
@@ -268,7 +268,6 @@
                                                 }
                                             ?>
                                         </select>
-                                        <input type="hidden" name="doctorCode">
                                     </div>
                                     <div class="my-2 d-flex gap-3 align-items-center">
                                         <label for="" class="form-label w-25">Dịch vụ đã đăng ký:</label>
@@ -358,6 +357,8 @@
 
         const formData = new FormData(formBook);
         const formObject = Object.fromEntries(formData.entries());
+
+        console.log(formObject);
         openPrintMedicalForm(formObject, formBook);
         window.onbeforeunload = function() {
             formBook.reset();
@@ -388,6 +389,7 @@
         
         const formData = new FormData(formBooked);
         const formObject = Object.fromEntries(formData.entries());
+        console.log(formObject);
         openPrintMedicalForm(formObject, formBooked);
         window.onbeforeunload = function() {
             formBooked.reset();
@@ -678,13 +680,14 @@
             formBooked.querySelector('#total-price').innerText = formatterPrice.format(appointmentInfo.totalPrice);
             formBooked.querySelector('input[name="totalPrice"]').value = appointmentInfo.totalPrice;
 
-            let preAppointedDoctor = listDoctorInfo.find((element)=> element.doctorCode = appointmentInfo.doctorCode);
-            let listRoom = formBooked.querySelectorAll('select[name="roomID"] option');
+            let preAppointedDoctor = appointmentInfo.doctorCode;
+            let listDoctorByRoom = formBooked.querySelectorAll('select[name="doctorCode"] option');
             if(preAppointedDoctor) {
-                listRoom.forEach((element)=>{
-                    if (element.value === preAppointedDoctor.roomID) { 
-                        element.selected = true; element.setAttribute('disabled', false); 
-                    } else { element.setAttribute('disabled', true);}
+                listDoctorByRoom.forEach((element)=>{
+                    if (element.value === preAppointedDoctor) { 
+                        element.selected = true; 
+                        element.disabled = false; 
+                    } else { element.disabled = true;}
                 })
             }
 

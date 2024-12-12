@@ -2,8 +2,7 @@
 
 
 return [
-
-    // Begin employee Route
+    /* Begin employee Route */
         [
             "url" => "/nhan-vien/phieu-kham-benh",
             "name" => "MedicalTicketRoute",
@@ -64,7 +63,7 @@ return [
             'controller' => \Controllers\EmployeeControllers\AppointmentController::class,
             'method' => 'createAppointmentCode'
         ],
-    // End employee Route
+    /* End employee Route */
     [
         "url" => "/dang-nhap-he-thong",
         "name" => "AccountStaffLoginRoute",
@@ -77,7 +76,7 @@ return [
         'controller' => \Controllers\AccountStaffController::class,
         'method' => 'accountStaffLogout'
     ],
-    // Begin queue Route
+    /* Begin queue Route */
         [
             "url" => "/lay-so-thu-tu",
             "name" => "QueueRoute",
@@ -102,7 +101,7 @@ return [
             'controller' => \Controllers\QueueController::class,
             'method' => 'insertAndUpdateAppointment'
         ],
-    // End queue Route
+    /* End queue Route */
 	
     /* Begin User Routes */
         [
@@ -125,4 +124,49 @@ return [
             'method' => 'FormUserLogin'
 	    ],
 	/* End User Routes */
+	
+    /* Begin Doctor Routes */
+        [
+            "url" => "/bac-si/lay-danh-sach-cho",
+            "name" => "GetWaitingExamListRoute",
+            "controller" => Controllers\DoctorControllers\WaitingExamController::class,
+            "method" => 'getWaitingExamList'
+        ],
+        [
+            "url" => "/bac-si/tiep-nhan-benh-nhan",
+            "name" => "ReceptionPatientRoute",
+            "controller" => Controllers\DoctorControllers\WaitingExamController::class,
+            "method" => 'receptionPatient'
+        ],
+        [
+            "url" => "/kham-tong-quat",
+            "name" => "DrGeneralMedical",
+            'controller' => \Controllers\DoctorControllers\DrGeneralMedical::class,
+            'method' => 'DrGeneralMedical'
+        ],
+        [
+            "url" => "/in-tong-quat",
+            "name" => "DrGeneralMedicalPrint",
+            'controller' => \Controllers\DoctorControllers\DrGeneralMedicalPrint::class,
+            'method' => 'DrGeneralMedicalPrint'
+        ],
+        [
+            "url" => "/kham-thi-luc",
+            "name" => "DrEyeExam",
+            'controller' => \Controllers\DoctorControllers\DrEyeExam::class,
+            'method' => 'DrEyeExam'
+        ],
+        [
+            "url" => "/kham-tai-mui-hong",
+            "name" => "DrENTExam",
+            'controller' => \Controllers\DoctorControllers\DrENTExam::class,
+            'method' => 'DrENTExam'
+        ],
+        [
+            "url" => "/kham-tim",
+            "name" => "DrHeartExam",
+            'controller' => \Controllers\DoctorControllers\DrHeartExam::class,
+            'method' => 'DrHeartExam'
+        ],
+    /* End Doctor Routes */
 ];

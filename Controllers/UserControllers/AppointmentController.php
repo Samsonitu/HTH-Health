@@ -22,12 +22,12 @@ class AppointmentController extends \Core\BaseController
 				}
 			}
 
-			$resultInsertAppointentTemporary = $this->Database->insertAppointentTemporary($_POST);
+			$resultInsertAppointentTemporary = $this->Database->insertAppointentTemporary($_POST, $resultCheckPatientCode);
 			if(!$resultInsertAppointentTemporary) {
 				$_SESSION['message'] = 'Lỗi thêm thông tin tạm thời cho lịch hẹn!';
 				$_SESSION['message_type'] = false;
 			}else {
-				$_SESSION['message'] = 'Thêm thông tin tạm thời cho lịch hẹn thành công!!!<br> Chờ nhân viên liên hệ để xác nhận!!!!';
+				$_SESSION['message'] = 'Thêm thông tin tạm thời cho lịch hẹn thành công!!!Chờ nhân viên liên hệ để xác nhận!!!!';
 				$_SESSION['message_type'] = false;
 			}
 			redirect('UserAppointmentRoute');

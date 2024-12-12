@@ -1,0 +1,153 @@
+.services {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.services__container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.services__sidebar {
+  position: fixed;
+  width: 12%;
+}
+
+/* .services__sidebar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background-color: #a1a1a1;
+} */
+
+.services__sidebar .heading {
+  font-size: 16px;
+  font-weight: 550;
+  padding: 5px 10px;
+  width: fit-content;
+  color: #fff;
+  background-color: #4fb5dd;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.services__sidebar .history__list {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-left: 5px;
+}
+
+.services__sidebar .history__item {
+  letter-spacing: 1px;
+  font-size: 16px;
+}
+
+.services__content {
+  position: relative;
+  left: 15%;
+  padding-left: 20px;
+  padding-top: 20px;
+  width: 85%;
+}
+
+.services__content--heading {
+  font-size: 18px;
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.services__content--sub__title {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.services__content--form {
+  position: relative;
+  margin-top: 20px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: none;
+}
+
+.services .form__item {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  width: 100%;
+}
+
+.services .form__item--group {
+  width: 28%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.services .form__item--group label {
+  font-weight: 500;
+  min-width: 80px;
+  font-size: 12px;
+}
+
+.services .form__item--input {
+  flex-grow: 1;
+  color: #000;
+  font-size: 12px;
+  padding: 2px;
+  text-align: center;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 2px #4c4c4c;
+  background-color: #fff;
+}
+
+.services .form__item--input:focus {
+  outline: none;
+}
+
+.form__item--group textarea {
+  resize: none;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  align-items: center;
+}
+
+.form__button {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.form__button button {
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  min-width: 100px;
+  padding: 5px 10px;
+}
+
+.form__button button.cancel {
+  background: var(--red-color);
+  color: #fff;
+}
+
+.form__button button.submit {
+  color: #fff;
+  background: #4fb5dd;
+}

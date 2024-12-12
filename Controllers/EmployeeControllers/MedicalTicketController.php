@@ -107,7 +107,6 @@ class MedicalTicketController extends \Core\BaseController
     public function medicalTicketScheduledCreate()
     {
       $this->checkAuthEmployee();
-
       $empCode = $_SESSION['employeeInfo']['empCode'];
       $resultCreateMedicalTicketScheduled = $this->Database->createMedicalTicketScheduled($_POST, $empCode);
 
