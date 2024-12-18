@@ -30,6 +30,7 @@ const ultH5Right = document.querySelectorAll('.p-right .content-img h5');
 const ultImgRight = document.querySelectorAll('.p-right .content-img img');
 const ultLeft = document.querySelectorAll('.ult-left');
 const ultRight = document.querySelector('.p-right .content-img');
+const ultBtn = document.querySelectorAll('.ult-btn');
 
 ultLeft[0].addEventListener('click', function(e){
 	ultH5Right[0].innerHTML = "Đặt lịch khám, lấy mẫu tại nhà";
@@ -63,12 +64,12 @@ ultLeft[3].addEventListener('mouseenter', function(e){
 ultLeft.forEach(function(ultL){
 	ultL.addEventListener('mouseenter', function(){
 		document.querySelector('.ultFocus')?.classList.remove('ultFocus');
-		this.classList.add("ultFocus");
+		ultL.classList.add("ultFocus");
 	})
 })
 
-document.getElementById('defaultOpen').click();
 
+document.getElementById('defaultOpen').click();
 
 // INFO-SERVICE
 

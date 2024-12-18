@@ -338,6 +338,8 @@
 	align-items: center;
 	float: right;
 	margin-right: 1em;
+	color: black;
+	background-color: rgb(221, 221, 221);
 }
 
 .p-right{
