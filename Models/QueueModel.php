@@ -31,11 +31,11 @@ class QueueModel extends Model
         return $this->SelectRow($Query);
     }
 
-    public function insertNewRowQueue($patientName, $counterID, $queueNo, $apptID = null) {
+    public function insertNewRowQueue($patientName, $counterID, $queueNo, $apptCode = null) {
         $Query = "INSERT INTO `queues`
-        (`counterID`, `apptID`, `patientName`, `queueNo`, `status`, `assignedTime`) 
+        (`counterID`, `apptCode`, `patientName`, `queueNo`, `status`, `assignedTime`) 
         VALUES 
-        ('.$counterID.','.$apptID.','.$patientName.','.$queueNo.','0', NOW())";
+        ('.$counterID.','.$apptCode.','.$patientName.','.$queueNo.','0', NOW())";
         $result = $this->InsertRow($Query);
         if($result) {
             return ['success'=> true, 'message' => 'Cập nhật hàng chờ thành công!'];

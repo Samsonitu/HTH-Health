@@ -1,76 +1,93 @@
 <?php
-$Title = "Trang chủ"; /* Trang tên gì thì để title đó VD: Trang chủ, Đăng nhập */
+$Title = "Trang chủ"; 
 
-/* Cần nhúng file css nào thì sửa đường dẫn trong phần tử của extraCSS */
 $extraCSS = [
 	public_dir('css/UserCSS/style.css')
 ];
 
-/* Cần nhúng file js nào thì sửa đường dẫn trong phần tử của extraJS */
 $extraJS = [
 	public_dir('js/UserJS/script.js')
 ];
 ?>
-
-<!-- Sửa lại đường dẫn thành "/../Tên đối tượng + Layouts/Tên đối tượng + tên file.php" -->
 <?php require_once __DIR__ . "/../UserLayouts/UserHeader.php"; ?>
 
-<!-- Code phần main ở đây -->
-<div class="thumbnails">
-	<img src="/public/img/banner/0.png" id="slideImg">
+<div id="demo" class="carousel slide" data-bs-ride="carousel">
+  	<div class="carousel-indicators">
+		<button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+		<button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+		<button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+	</div>
+	<div class="carousel-inner">
+		<div class="carousel-item active">
+			<img src="<?=public_dir('img/banner/0.png')?>" alt="" class="d-block w-100">
+		</div>
+		<div class="carousel-item">
+			<img src="<?=public_dir('img/banner/1.png')?>" alt="" class="d-block w-100">
+		</div>
+		<div class="carousel-item">
+			<img src="<?=public_dir('img/banner/2.png')?>" alt="" class="d-block w-100">
+		</div>
+	</div>
+	<button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+		<span class="bg-white rounded text-dark p-3"><i class="fa-solid fa-angle-left"></i></span>
+	</button>
+	<button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+		<span class="bg-white rounded text-dark p-3"><i class="fa-solid fa-angle-right"></i></span>
+	</button>
 </div>
-<div class="container">
-	<div class="info-utilities">
-
-		<h2>Dịch vụ của chúng tôi</h2>
-		<div class="position-info">
-			<div class="p-left">
-				<div class="p-l p-top">
-					<div class="utilities u-r">
-						<i class="fa-solid fa-calendar-days"></i>
-						<h5 onclick="clickSv('1')">Đặt lịch khám, lấy mẫu tại nhà</h5>
-						<p>Quý khách hàng sử dụng tiện ích này để đặt lịch lấy mẫu tại nhà hoặc đặt lịch khám chữa bệnh tại các cơ sở của HTH </p>
-						<span>Đặt lịch</span>
-						<img src="/public/img/service/Homepage_Bang+gia+dvu.png" alt="">
-					</div>
-					<div class="utilities">
-						<i class="fa-solid fa-magnifying-glass-plus"></i>
-						<h5 onclick="clickSv('2')">Tra cứu kết quả</h5>
-						<p>Quý khách hàng sử dụng tiện ích này để đặt lịch lấy mẫu tại nhà hoặc đặt lịch khám chữa bệnh tại các cơ sở của HTH</p>
-						<span>Tra cứu</span>
+<article class="container-fuild">
+	<section id="utilities">
+		<div class="section__content row">
+			<div class="section__left col-md-12 col-xl-6">
+				<h2 class="section__title">Dịch vụ của chúng tôi</h2>
+				<div class="container">
+					<div class="row justify-content-between"> 
+						<div class="utilities__item col-sm-12">
+							<i class="fa-solid fa-calendar-days icon-ult-left"></i>
+							<h5 class="utilities__item-info">Đặt lịch khám lấy mẫu tại nhà</h5>
+							<p class="utilities__item-desc">Quý khách hàng sử dụng tiện ích này để đặt lịch lấy mẫu tại nhà hoặc đặt lịch khám chữa bệnh tại các cơ sở của HTH</p>
+							<div class="utilities__item-action text-end">
+							<a href="">Đặt lịch</a>
+							<i class="fa-solid fa-arrow-right-long"></i>
+							</div>
+						</div>
+						<div class="utilities__item col-sm-12">
+							<i class="fa-solid fa-calendar-days icon-ult-left"></i>
+							<h5 class="utilities__item-info">Đặt lịch khám lấy mẫu tại nhà</h5>
+							<p class="utilities__item-desc">Quý khách hàng sử dụng tiện ích này để đặt lịch lấy mẫu tại nhà hoặc đặt lịch khám chữa bệnh tại các cơ sở của HTH</p>
+							<div class="utilities__item-action text-end">
+							<a href="">Đặt lịch</a>
+							<i class="fa-solid fa-arrow-right-long"></i>
+							</div>
+						</div>
+						<div class="utilities__item col-sm-12">
+							<i class="fa-solid fa-calendar-days icon-ult-left"></i>
+							<h5 class="utilities__item-info">Đặt lịch khám lấy mẫu tại nhà</h5>
+							<p class="utilities__item-desc">Quý khách hàng sử dụng tiện ích này để đặt lịch lấy mẫu tại nhà hoặc đặt lịch khám chữa bệnh tại các cơ sở của HTH</p>
+							<div class="utilities__item-action text-end">
+							<a href="">Đặt lịch</a>
+							<i class="fa-solid fa-arrow-right-long"></i>
+							</div>
+						</div>
+						<div class="utilities__item col-sm-12">
+							<i class="fa-solid fa-calendar-days icon-ult-left"></i>
+							<h5 class="utilities__item-info">Đặt lịch khám lấy mẫu tại nhà</h5>
+							<p class="utilities__item-desc">Quý khách hàng sử dụng tiện ích này để đặt lịch lấy mẫu tại nhà hoặc đặt lịch khám chữa bệnh tại các cơ sở của HTH</p>
+							<div class="utilities__item-action text-end">
+							<a href="">Đặt lịch</a>
+							<i class="fa-solid fa-arrow-right-long"></i>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="p-l p-bottom">
-					<div class="utilities u-r">
-						<i class="fa-solid fa-circle-dollar-to-slot"></i>
-						<h5 onclick="clickSv('3')">Bảng giá dịch vụ</h5>
-						<p>Quý khách hàng sử dụng tiện ích này để tra cứu giá dịch vụ y tế tại Hệ thống Y tế HTH</p>
-						<span>Xem bảng giá</span>
-					</div>
-					<div class="utilities">
-						<i class="fa-solid fa-circle-question"></i>
-						<h5 onclick="clickSv('4')">Hỏi đáp chuyên gia</h5>
-						<p>Quý khách hàng sử dụng tiện ích này để đặt câu hỏi và nhận hướng dẫn, giải đáp thắc mắc từ chuyên gia y tế của HTH</p>
-						<span>Xem bảng giá</span>
-					</div>
-				</div>
-
-
 			</div>
 
-			<div class="p-right">
-				<div class="content-img">
-					<h5 id="getSv"></h5>
-					<img src="" alt="">
-				</div>
-
+			<div class="section__right col-md-12 col-xl-6">
+				<h5 id="getSv"></h5>
+				<img class="w-100" src="<?=public_dir('img/service/Homepage_Bang+gia+dvu.png')?>" alt="">
 			</div>
 		</div>
-
-
-	</div>
-
-
+	</section>
 
 	<div class=" info-doctors">
 		<h2>Đội ngũ chuyên gia bác sĩ</h2>
@@ -81,9 +98,9 @@ $extraJS = [
 				<div class="show-info">
 					<div class="info-img"><img src="/public/img/doctor/20210311_avt-BS+Nghị.png" alt=""></div>
 					<div class="info-doc">
-						<p>Bác sĩ</p>
-						<h3>Nguyễn Quốc Dũng</h3>
-						<p>Chuyên khoa chẩn đoán hình ảnh</p>
+						<p class="docT">Bác sĩ</p>
+						<h5 class="docName">Nguyễn Quốc Dũng</h5>
+						<p class="docMajor">Chuyên khoa chẩn đoán hình ảnh</p>
 					</div>
 
 				</div>
@@ -98,11 +115,11 @@ $extraJS = [
 			<div class="box-info">
 
 				<div class="show-info">
-					<div class="info-img"><img src="/public/img/doctor/20210311_avt-BS+Nghị.png" alt=""></div>
+					<div class="info-img"><img class="info-img" src="/public/img/doctor/20210311_avt-BS+Nghị.png" alt=""></div>
 					<div class="info-doc">
-						<p>Bác sĩ</p>
-						<h3>Nguyễn Quốc Dũng</h3>
-						<p>Chuyên khoa chẩn đoán hình ảnh</p>
+						<p class="docT">Bác sĩ</p>
+						<h5 class="docName">Nguyễn Quốc Dũng</h5>
+						<p class="docMajor">Chuyên khoa chẩn đoán hình ảnh</p>
 					</div>
 
 				</div>
@@ -117,11 +134,11 @@ $extraJS = [
 			<div class="box-info">
 
 				<div class="show-info">
-					<div class="info-img"><img src="/public/img/doctor/20210311_avt-BS+Nghị.png" alt=""></div>
+					<div class="info-img"><img class="info-img" src="/public/img/doctor/20210311_avt-BS+Nghị.png" alt=""></div>
 					<div class="info-doc">
-						<p>Bác sĩ</p>
-						<h3>Nguyễn Quốc Dũng</h3>
-						<p>Chuyên khoa chẩn đoán hình ảnh</p>
+						<p class="docT">Bác sĩ</p>
+						<h5 class="docName">Nguyễn Quốc Dũng</h5>
+						<p class="docMajor">Chuyên khoa chẩn đoán hình ảnh</p>
 					</div>
 
 				</div>
@@ -136,11 +153,11 @@ $extraJS = [
 			<div class="box-info">
 
 				<div class="show-info">
-					<div class="info-img"><img src="/public/img/doctor/20210311_avt-BS+Nghị.png" alt=""></div>
+					<div class="info-img"><img class="info-img" src="/public/img/doctor/20210311_avt-BS+Nghị.png" alt=""></div>
 					<div class="info-doc">
-						<p>Bác sĩ</p>
-						<h3>Nguyễn Quốc Dũng</h3>
-						<p>Chuyên khoa chẩn đoán hình ảnh</p>
+						<p class="docT">Bác sĩ</p>
+						<h5 class="docName">Nguyễn Quốc Dũng</h5>
+						<p class="docMajor">Chuyên khoa chẩn đoán hình ảnh</p>
 					</div>
 
 				</div>
@@ -155,11 +172,11 @@ $extraJS = [
 			<div class="box-info">
 
 				<div class="show-info">
-					<div class="info-img"><img src="/public/img/doctor/20210311_avt-BS+Nghị.png" alt=""></div>
+					<div class="info-img"><img class="info-img" src="/public/img/doctor/20210311_avt-BS+Nghị.png" alt=""></div>
 					<div class="info-doc">
-						<p>Bác sĩ</p>
-						<h3>Nguyễn Quốc Dũng</h3>
-						<p>Chuyên khoa chẩn đoán hình ảnh</p>
+						<p class="docT">Bác sĩ</p>
+						<h5 class="docName">Nguyễn Quốc Dũng</h5>
+						<p class="docMajor">Chuyên khoa chẩn đoán hình ảnh</p>
 					</div>
 
 				</div>
@@ -247,7 +264,7 @@ $extraJS = [
 
 	<div class="info-news">
 
-		<div class="view">
+		<div class="view-all">
 			<div class="title-news">
 				<h2>Tin tức</h2>
 			</div>
@@ -261,7 +278,7 @@ $extraJS = [
 				<div class="item-news">
 					<img src="/public/img/news/3-pgs-ts-nguyen-thai-son.jpg.png" alt="">
 					<div class="description-news">
-						<h3>Bộ Y tế khuyến cáo người dân về tình hình dịch bệnh sởi</h3>
+						<h4>Bộ Y tế khuyến cáo người dân về tình hình dịch bệnh sởi</h4>
 						<p>Từ đầu năm 2024 đến nay, số ca mắc bệnh sởi tăng so với cùng kỳ năm 2023 và có xu hướng gia tăng tại một số địa phương.</p>
 					</div>
 
@@ -269,7 +286,7 @@ $extraJS = [
 				<div class="item-news">
 					<img src="/public/img/news/3-pgs-ts-nguyen-thai-son.jpg.png" alt="">
 					<div class="description-news">
-						<h3>Bộ Y tế khuyến cáo người dân về tình hình dịch bệnh sởi</h3>
+						<h4>Bộ Y tế khuyến cáo người dân về tình hình dịch bệnh sởi</h4>
 						<p>Từ đầu năm 2024 đến nay, số ca mắc bệnh sởi tăng so với cùng kỳ năm 2023 và có xu hướng gia tăng tại một số địa phương.</p>
 					</div>
 
@@ -279,7 +296,7 @@ $extraJS = [
 				<div class="item-news">
 					<img src="/public/img/news/3-pgs-ts-nguyen-thai-son.jpg.png" alt="">
 					<div class="description-news">
-						<h3>Bộ Y tế khuyến cáo người dân về tình hình dịch bệnh sởi</h3>
+						<h4>Bộ Y tế khuyến cáo người dân về tình hình dịch bệnh sởi</h4>
 						<p>Từ đầu năm 2024 đến nay, số ca mắc bệnh sởi tăng so với cùng kỳ năm 2023 và có xu hướng gia tăng tại một số địa phương.</p>
 					</div>
 
@@ -287,7 +304,7 @@ $extraJS = [
 				<div class="item-news">
 					<img src="/public/img/news/3-pgs-ts-nguyen-thai-son.jpg.png" alt="">
 					<div class="description-news">
-						<h3>Bộ Y tế khuyến cáo người dân về tình hình dịch bệnh sởi</h3>
+						<h4>Bộ Y tế khuyến cáo người dân về tình hình dịch bệnh sởi</h4>
 						<p>Từ đầu năm 2024 đến nay, số ca mắc bệnh sởi tăng so với cùng kỳ năm 2023 và có xu hướng gia tăng tại một số địa phương.</p>
 					</div>
 
@@ -303,7 +320,7 @@ $extraJS = [
 			<button><i class="fa-solid fa-circle"></i></button>
 		</div>
 	</div>
-</div>
+</ả>
 
 <!-- Sửa lại đường dẫn thành "/../Tên đối tượng + Layouts/Tên đối tượng + tên file.php" -->
 <?php require_once __DIR__ . "/../UserLayouts/UserFooter.php"; ?>

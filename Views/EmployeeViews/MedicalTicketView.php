@@ -461,6 +461,7 @@
             let selectedServiceInfo = listServices.filter((service) => 
                 JSON.parse(data.selectedServiceIDs).includes(service.serviceID)
             );
+            let doctorRoom = listDoctorInfo.find((element)=>element.doctorCode == data.doctorCode)
 
             return `
                 <div id="medicalTicketContainer" class="container border p-4 shadow-sm">
@@ -521,7 +522,7 @@
                 <div class="footer mt-4 text-center">
                     <p class="fw-bold mb-2">STT</p>
                     <p class="display-6  text-success mb-2">${data.queueNo}</p>
-                    <p class="text-muted">Phòng khám số ${data.roomID}</p>
+                    <p class="text-muted">Phòng khám số ${doctorRoom.roomID}</p>
                 </div>
             </div>
             <button id="printConfirm">In phiếu</button>
@@ -619,9 +620,18 @@
             // Hiển thị giới tính bệnh nhân
             formBooked.querySelector('input[name="patientGender"]').value = patientGuardianInfo.patientGender === 'man' ? "Nam" : "Nữ";
             
-            const patientBirthday = calculateAgeAndFormat(patientGuardianInfo.patientBirthday);
-            formBooked.querySelector('input[name="patientBirthday"]').value = patientBirthday.formattedDate;
-            formBooked.querySelector('input[name="patientAge"]').value = patientBirthday.age;
+            if (patientGuardianInfo.patientBirthday) {
+                const birthday = new Date(patientGuardianInfo.patientBirthday);
+                const day = String(birthday.getDate()).padStart(2, '0');
+                const month = String(birthday.getMonth() + 1).padStart(2, '0');
+                const year = birthday.getFullYear();
+                formBooked.querySelector('input[name="patientBirthday"]').value = `${day}-${month}-${year}`;
+            }
+            if (patientGuardianInfo.patientBirthday) {
+                const birthday = new Date(patientGuardianInfo.patientBirthday);
+                const age = calculateAge(birthday);
+                formBooked.querySelector('input[name="patientAge"]').value = age;
+            }
 
             // Hiển thị tên người giám hộ
             formBooked.querySelector('input[name="guardianName"]').value = patientGuardianInfo.guardianName ? patientGuardianInfo.guardianName : "";
@@ -629,9 +639,18 @@
             // Hiển thị giới tính người giám hộ
             formBooked.querySelector('input[name="guardianGender"]').value = patientGuardianInfo.guardianGender === 'man' ? "Nam" : "Nữ";
 
-            const guardianBirthday = calculateAgeAndFormat(patientGuardianInfo.guardianBirthday);
-            formBooked.querySelector('input[name="guardianBirthday"]').value = guardianBirthday.formattedDate;
-            formBooked.querySelector('input[name="guardianAge"]').value = guardianBirthday.age;
+            if (patientGuardianInfo.guardianBirthday) {
+                const birthday = new Date(patientGuardianInfo.guardianBirthday);
+                const day = String(birthday.getDate()).padStart(2, '0');
+                const month = String(birthday.getMonth() + 1).padStart(2, '0');
+                const year = birthday.getFullYear();
+                formBooked.querySelector('input[name="guardianBirthday"]').value = `${day}-${month}-${year}`;
+            }
+            if (patientGuardianInfo.guardianBirthday) {
+                const birthday = new Date(patientGuardianInfo.guardianBirthday);
+                const age = calculateAge(birthday);
+                formBooked.querySelector('input[name="guardianAge"]').value = age;
+            }
 
             // Hiển thị số điện thoại người giám hộ
             formBooked.querySelector('input[name="phoneNumber"]').value = patientGuardianInfo.phoneNumber ? patientGuardianInfo.phoneNumber : "";
@@ -801,7 +820,7 @@
                         <p class="border-bottom"><span style="font-size: 12px;">${element.assignedTime || ''}</p>
                         <p class="mt-2"><b>Trẻ:</b> ${element.patientName || ''}</p>
                         <p><b>STT:</b> ${element.queueNo || ''}</p>
-                        <p class="mb-2 pb-2 border-bottom"><b>Loại:</b> ${element.apptID !== "0" ? "A" : "B"}</p>
+                        <p class="mb-2 pb-2 border-bottom"><b>Loại:</b> ${element.apptCode !== "0" ? "A" : "B"}</p>
                         <input class="btn btn-success py-1 px-1 " style="font-weight:bold;" type="submit" name="btnReception" value="Tiếp nhận">
                         <input class="btn btn-danger py-1 px-1 " style="font-weight:bold;" type="submit" name="btnCancelReception" value="Hủy">
                     </form>

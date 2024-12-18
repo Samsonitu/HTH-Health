@@ -122,7 +122,7 @@ class QueueController extends \Core\BaseController
             ]);
             exit;
         } 
-        $insertNewRowQueueResult = $this->Database->insertNewRowQueue($patientName[0]['patientName'], $counterID, $queueNo);
+        $insertNewRowQueueResult = $this->Database->insertNewRowQueue($patientName[0]['patientName'], $counterID, $queueNo, $apptCode);
         echo json_encode([
             'success' => $insertNewRowQueueResult['success'],
             'message' => $insertNewRowQueueResult['message']

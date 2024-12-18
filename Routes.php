@@ -143,50 +143,12 @@ return [
             'controller' => \Controllers\UserControllers\UserLoginController::class,
             'method' => 'FormUserLogin'
 	    ],
-	/* End User Routes */
-	
-    /* Begin Doctor Routes */
         [
-            "url" => "/bac-si/lay-danh-sach-cho",
-            "name" => "GetWaitingExamListRoute",
-            "controller" => Controllers\DoctorControllers\WaitingExamController::class,
-            "method" => 'getWaitingExamList'
+            "url" => "/dang-ky",
+            "name" => "UserRegisterRoute",
+            'controller' => \Controllers\UserControllers\userRegisterController::class,
+            'method' => 'FormUserRegister'
         ],
-        [
-            "url" => "/bac-si/tiep-nhan-benh-nhan",
-            "name" => "ReceptionPatientRoute",
-            "controller" => Controllers\DoctorControllers\WaitingExamController::class,
-            "method" => 'receptionPatient'
-        ],
-        [
-            "url" => "/kham-tong-quat",
-            "name" => "DrGeneralMedical",
-            'controller' => \Controllers\DoctorControllers\DrGeneralMedical::class,
-            'method' => 'DrGeneralMedical'
-        ],
-        [
-            "url" => "/in-tong-quat",
-            "name" => "DrGeneralMedicalPrint",
-            'controller' => \Controllers\DoctorControllers\DrGeneralMedicalPrint::class,
-            'method' => 'DrGeneralMedicalPrint'
-        ],
-        [
-            "url" => "/kham-thi-luc",
-            "name" => "DrEyeExam",
-            'controller' => \Controllers\DoctorControllers\DrEyeExam::class,
-            'method' => 'DrEyeExam'
-        ],
-        [
-            "url" => "/kham-tai-mui-hong",
-            "name" => "DrENTExam",
-            'controller' => \Controllers\DoctorControllers\DrENTExam::class,
-            'method' => 'DrENTExam'
-        ],
-        [
-            "url" => "/kham-tim",
-            "name" => "DrHeartExam",
-            'controller' => \Controllers\DoctorControllers\DrHeartExam::class,
-            'method' => 'DrHeartExam'
-        ],
-    /* End Doctor Routes */
+    /* End User Routes */
+
 ];

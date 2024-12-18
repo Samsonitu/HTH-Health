@@ -6,9 +6,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?= $Title ?? "HTH HEALTH" ?></title>
 	<link rel="shortcut icon" href="<?php echo public_dir('img/logo/logo-bg-white.png') ?>" type="image/x-icon">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" integrity="sha512-9xKTRVabjVeZmc+GUW8GgSmcREDunMM+Dt/GrzchfN8tkwHizc5RP4Ok/MXFFy5rIjJjzhndFScTceq5e6GvVQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="<?php echo public_dir('css/UserCSS/style.css') ?>">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 	<?php
 	if (!empty($extraCSS)) {
 		foreach ($extraCSS as $css) {
@@ -22,69 +33,67 @@
 <body>
 	<!-- Phần ở trên giữ nguyên -->
 	<!-- Code từ đây xuống -->
-	<div class="header">
-
-		<div class="header-info">
-
-			<div class="map h-info">
-				<i class="fa-solid fa-location-dot"></i>
-				<p>Số 269 Điện Biên Phủ, phường Võ Thị Sáu, quận 3, Tp. HCM</p>
+	<header>
+		<div class="header-top">
+			<div class="header-top__container container">
+				<div class="header-top__address">
+					<i class="fa-solid fa-location-dot"></i>
+					<p>Số 269 Điện Biên Phủ, phường Võ Thị Sáu, quận 3, Tp. HCM</p>
+				</div>
+				<div class="header-top__email">
+					<i class="fa-regular fa-envelope"></i>
+					<p>hthhealth@phongkham.com</p>
+				</div>
+				<div class="header-top__time">
+					<i class="fa-regular fa-clock"></i>
+					<p>8:00-20:00</p>
+				</div>
 			</div>
-
-			<div class="contact h-info">
-				<i class="fa-regular fa-envelope"></i>
-				<p>contact@phongkham.com</p>
-			</div>
-
-			<div class="schedule h-info">
-				<i class="fa-regular fa-clock"></i>
-				<p>8:00-20:00</p>
-			</div>
-
 		</div>
-
-		<div class="header-navbar">
-
-			<div class="nav-info h-navbar">
-				<img src="/public/img/logo/logo-bg-white.png" alt="">
-				<h3>Bác sĩ riêng của bạn</h3>
+		<div class="header-middle">
+			<div class="header-middle__container container">
+				<div class="header-middle__logo">
+					<img width="80px" height="80px" src="<?=public_dir('img/logo/logo-bg-white.png')?>" alt="">
+					<h4 class="header-midle__slogan">Bác sĩ riêng của bạn</h4>
+				</div>
+				<div class="header-middle__search">
+					<input class="header-middle__search-input" type="text" placeholder="Tìm kiếm...">
+					<button class="header-middle__search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+				</div>
+				<div class="header__info">
+					<div class="header-info__hotline">
+						<button class="btn rounded-circle bg-white"><i class="fa-solid fa-phone"></i></button>
+						<span class="header-info__text-hotline">Hotline: <strong>19000 1111</strong></span>
+					</div>
+					<div class="header-info__facebook">
+						<button class="btn rounded-circle bg-white"><i class="fa-brands fa-facebook-f"></i></button>
+						<span class="header-info__text-hotline">Fanpage: <strong>HTH HEALTH</strong></span>
+					</div>
+				</div>
 			</div>
-
-			<div class="nav-search h-navbar">
-				<input type="search" placeholder="Tìm kiếm" class="search-box">
-				<i class="fa-solid fa-magnifying-glass"></i>
-			</div>
-
-			<div class="nav-phone h-navbar">
-				<button name="phone" class="btn"><i class="fa-solid fa-phone"></i></button>
-				<p>Hotline:</p>
-				<p class="phone">1900 1111</p>
-			</div>
-
-			<div class="nav-examine h-navbar">
-				<button name="examine" class="btn"><i class="fa-solid fa-house"></i></button>
-				<p>Phòng khám online</p>
-			</div>
-
 		</div>
-
-		<div class="header-menu">
-
-			<ul class="menu">
-				<li><a href="/">Trang chủ</a></li>
-				<li><a href="">Giới thiệu</a></li>
-				<li><a href="">Dịch vụ</a></li>
-				<li><a href="">Hỏi đáp bác sĩ</a></li>
-				<li><a href="">Tin tức</a></li>
-				<li><a href="">Hỗ trợ</a></li>
-				<li>
-					<a href="<?= route('UserLoginRoute') ?>">Đăng nhập</a> /
-					<a href="<?= route('UserLoginRoute') ?>">Đăng ký</a>
-				</li>
-				<li id="navSchedule"><a href="<?= route('UserAppointmentRoute') ?>"><i class="fa-solid fa-calendar-days"></i>Đặt lịch</a></li>
-			</ul>
-
+		<div class="header-nav">
+			<div class="header-nav__container container">
+				<ul class="header-nav__menu">
+					<li class="header-nav__item header-nav__item--active"><a class="header-nav__link" href="">Trang chủ</a></li>
+					<li class="header-nav__item"><a class="header-nav__link" href="">Giới thiệu</a></li>
+					<li class="header-nav__item"><a class="header-nav__link" href="">Dịch vụ</a></li>
+					<li class="header-nav__item"><a class="header-nav__link" href="">Hỏi đáp</a></li>
+					<li class="header-nav__item"><a class="header-nav__link" href="">Tin tức</a></li>
+					<li class="header-nav__item"><a class="header-nav__link" href="">Hỗ trợ</a></li>
+					<li class="header-nav__item"><a class="header-nav__link" href="">Hồ sơ sức khỏe trực tuyến</a></li>
+				</ul>
+				<div class="header-nav__auth">
+					<span class="header-nav__auth-login">Đăng nhập</span>
+					/
+					<span class="header-nav__auth-register">Đăng ký</span>
+				</div>
+				<div class="header-cta">
+					<a href="<?=route('UserAppointmentRoute')?>" class="header-nav__link header-cta__link">
+						<i class="fa-regular fa-calendar-days"></i>
+						<span class="header-cta__text">Đặt lịch</span>
+					</a>
+				</div>
+			</div>
 		</div>
-
-	</div>
-	<!-- <h2>Header</h2> -->
+	</header>

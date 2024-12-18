@@ -108,7 +108,7 @@
                                                             <td><?= formatGender($patientGuardianInfo['guardianGender']) ?></td>
                                                             <td><?= calculateAge($patientGuardianInfo['guardianBirthday']) ?></td>
                                                             <td><?= htmlspecialchars($patientGuardianInfo['phoneNumber']) ?></td>
-                                                            <td><?= formatDate($patientGuardianInfo['createAt']) ?></td>
+                                                            <td><?= formatDate($patientGuardianInfo['confirmAt']) ?></td>
                                                             <td><i class="fa-solid fa-pen-to-square"></i></td>
                                                             <td><i class="fa-regular fa-trash-can"></i></td>
                                                         </tr>

@@ -38,9 +38,10 @@ class PatientRecordModel extends Model
     
         // Chèn thông tin người giám hộ vào cơ sở dữ liệu
         $Query1 = "INSERT INTO `guardian`
-            (`empCode`, `guardianCode`, `guardianName`, `guardianGender`, `guardianBirthday`, `phoneNumber`, `address`, `job`, `confirmAt`, `isTemporary`) 
+            (`empCode`, `guardianCode`, `guardianName`, `guardianGender`, `guardianBirthday`, `phoneNumber`, `address`, `job`, 
+            `createAt`, `confirmAt`, `isTemporary`) 
             VALUES 
-            ('$empCode', '$guardianCode', '{$guardian["name"]}', '{$guardian["gender"]}', '{$guardian["birthday"]}', '{$guardian["phoneNumber"]}', '{$guardian["address"]}', '{$guardian["job"]}', '$currentDateTime', 0)";
+            ('$empCode', '$guardianCode', '{$guardian["name"]}', '{$guardian["gender"]}', '{$guardian["birthday"]}', '{$guardian["phoneNumber"]}', '{$guardian["address"]}', '{$guardian["job"]}', '$currentDateTime', '$currentDateTime', 0)";
     
         $newGuardian = $this->InsertRow($Query1, [], true);
         if (!$newGuardian) return ['message' => 'Thêm thông tin người giám hộ thất bại!', 'message_type' => 'error'];
@@ -48,9 +49,9 @@ class PatientRecordModel extends Model
         $patientCode = $this->generateUniquePatientCode();
         
         $Query2 = "INSERT INTO `patient`
-                    (`patientID`, `guardianID`, `patientName`, `patientCode`, `patientGender`, `patientBirthday`, `medicalHistory`, `allergies`, `confirmAt`, `empCode`, `relationship`, `isTemporary`) 
+                    (`patientID`, `guardianID`, `patientName`, `patientCode`, `patientGender`, `patientBirthday`, `medicalHistory`, `allergies`, `createAt`, `confirmAt`, `empCode`, `relationship`, `isTemporary`) 
                     VALUES 
-                    ('', '{$newGuardian}', '{$patient["name"]}', '{$patientCode}', '{$patient["gender"]}', '{$patient["birthday"]}', '{$patient["medicalHistory"]}', '{$patient["allergies"]}', '$currentDateTime', '$empCode', '{$patient["relationship"]}', 0)";
+                    ('', '{$newGuardian}', '{$patient["name"]}', '{$patientCode}', '{$patient["gender"]}', '{$patient["birthday"]}', '{$patient["medicalHistory"]}', '{$patient["allergies"]}', '$currentDateTime' , '$currentDateTime', '$empCode', '{$patient["relationship"]}', 0)";
         
         $newPatient = $this->InsertRow($Query2, [], true);
         if (!$newPatient) return ['message' => 'Thêm thông tin bệnh nhân thất bại!', 'message_type' => 'error'];
@@ -67,7 +68,7 @@ class PatientRecordModel extends Model
 
             // Cập nhật bảng guardian và patient với guardianCode và patientCode mới
             $Query1 = "UPDATE guardian
-                SET empCode = ?, guardianName = ?, guardianGender = ?, guardianBirthday = ?, phoneNumber = ?, `address` = ?, job = ?, guardianCode = ?, isTemporary = 0
+                SET empCode = ?, guardianName = ?, guardianGender = ?, guardianBirthday = ?, phoneNumber = ?, `address` = ?, job = ?, guardianCode = ?, isTemporary = 0, confirmAt = NOW()
                 WHERE guardianID = ?
             ";
             $Values1 = [$empCode, $guardian['name'], $guardian['gender'], $guardian['birthday'], $guardian['phoneNumber'], $guardian['address'], $guardian['job'], $guardianCode, $guardian['guardianID']];
@@ -76,7 +77,7 @@ class PatientRecordModel extends Model
             if (!$newGuardianInfo) return ['message' => 'Cập nhật thông tin người giám hộ thất bại!', 'message_type' => 'error'];
 
             $Query2 = "UPDATE patient
-                SET empCode = ?, patientName = ?, patientGender = ?, patientBirthday = ?, medicalHistory = ?, allergies = ?, relationship = ?, patientCode = ?, isTemporary = 0
+                SET empCode = ?, patientName = ?, patientGender = ?, patientBirthday = ?, medicalHistory = ?, allergies = ?, relationship = ?, patientCode = ?, isTemporary = 0, confirmAt = NOW()
                 WHERE patientID = ?
             ";
             $Values2 = [$empCode, $patient['name'], $patient['gender'], $patient['birthday'], $patient['medicalHistory'], $patient['allergies'], $patient['relationship'], $patientCode, $patient['patientID']];

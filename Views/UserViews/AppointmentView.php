@@ -35,16 +35,16 @@ $extraJS = [public_dir('js/UserJS/script.js')];
 						</div>
 						<div class="p-g name">
 							<label>Tên bệnh nhân:</label><br>
-							<input type="text" name="patientName">
+							<input type="text" name="patientName" required>
 						</div>
 						<div class="birth-gen">
 							<div class="p-g birthday">
 								<label>Ngày sinh:</label>
-								<input type="date" name="patientBirthday">
+								<input type="date" name="patientBirthday" required>
 							</div>
 							<div class="p-g gender">
 								<label>Giới tính: </label>
-								<input id="patientMan" type="radio" name="patientGender" value="man"><label for="patientMan">Nam</label>
+								<input id="patientMan" type="radio" name="patientGender" value="man" required><label for="patientMan">Nam</label>
 								<input id="patientWoman" type="radio" name="patientGender" value="woman"><label for="patientWoman">Nữ</label>
 							</div>
 						</div>
@@ -52,25 +52,25 @@ $extraJS = [public_dir('js/UserJS/script.js')];
 					</div>
 					<div class="manifest-patient">
 						<label>Triệu chứng - Biểu hiện:</label>
-						<textarea name="symptom" class="manifest" rows="6"></textarea>
+						<textarea name="symptom" class="manifest" rows="6" required></textarea>
 					</div>
 					<hr>
 					<div class="f-i guardian-info">
 						<div class="p-g name">
 							<label>Tên người bảo hộ:</label><br>
-							<input type="text" name="guardianName">
+							<input type="text" name="guardianName" required>
 						</div>
 						<div class="p-g phone">
 							<label>Số điện thoại:</label><br>
-							<input type="tel" name="phoneNumber">
+							<input type="tel" name="phoneNumber" required>
 						</div>
 					</div>
 					<hr>
 					<div class="f-i AppointmentTime">
 						<div class="Time">
 							<label>Thời gian đặt lịch:</label><br>
-							<input type="date" name="apptDate">
-							<input type="time" name="apptTime">
+							<input type="date" name="apptDate" required>
+							<input type="time" name="apptTime" required>
 						</div>
 					</div>
 
@@ -78,7 +78,7 @@ $extraJS = [public_dir('js/UserJS/script.js')];
 
 				</div>
 				<div class="btn-sign-Appointment">
-					<input type="submit" class="btn btn-sign" name="btnRegisterExamination" value="Đặt lịch">
+					<input type="submit" class="btn-sign" name="btnRegisterExamination" value="Đặt lịch">
 				</div>
 			</div>
 		</div>

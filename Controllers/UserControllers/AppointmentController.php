@@ -2,7 +2,6 @@
 
 namespace Controllers\UserControllers;
 
-use Core\Model;
 use Models\UserModels\AppointmentModel;
 
 class AppointmentController extends \Core\BaseController
