@@ -25,15 +25,16 @@
 	<header>
 		<!-- Logo -->
 		<div id="logo">
-			<a href="/"><img src="<?php echo public_dir('img/logo/logo.png') ?>" alt=""></a>
+			<a href="/bac-si"><img src="<?php echo public_dir('img/logo/logo.png') ?>" alt=""></a>
 		</div>
 
 		<!-- Navigation -->
 		<ul id="nav">
-			<li><a href="<?php echo route('DrGeneralMedical') ?>"><i class="fa-solid fa-file"></i> <span>Khám tổng quát</span></a></li>
-			<li><a href="<?php echo route('DrHeartExam') ?>"><i class="fa-solid fa-file"></i> <span>Khám tim</span></a></li>
-			<li><a href="<?php echo route('DrENTExam') ?>"><i class="fa-solid fa-file"></i> <span>Khám tai mũi họng</span></a></li>
-			<li><a href="<?php echo route('DrEyeExam') ?>"><i class="fa-solid fa-file"></i> <span>Khám thị lực</span></a></li>
+
+			<li><a data-service="Khám tổng quát" href="<?php echo route('DrGeneralMedical') ?>"><i class="fa-solid fa-file"></i> <span>Khám tổng quát</span></a></li>
+			<li><a data-service="Khám tim" href="<?php echo route('DrHeartExam') ?>"><i class="fa-solid fa-file"></i> <span>Khám tim</span></a></li>
+			<li><a data-service="Khám tai mũi họng" href="<?php echo route('DrENTExam') ?>"><i class="fa-solid fa-file"></i> <span>Khám tai mũi họng</span></a></li>
+			<li><a data-service="Khám thị lực" href="<?php echo route('DrEyeExam') ?>"><i class="fa-solid fa-file"></i> <span>Khám thị lực</span></a></li>
 		</ul>
 
 		<!-- Avatar -->
@@ -47,3 +48,22 @@
 			</ul>
 		</div>
 	</header>
+	<script>
+		const activeServiceName = <?php echo json_encode($_SESSION['serviceName'][0]['serviceName']); ?>;
+		document.addEventListener('DOMContentLoaded', () => {
+			// Lấy danh sách tất cả các nút dịch vụ
+			const serviceLinks = document.querySelectorAll('#nav a[data-service]');
+
+			serviceLinks.forEach(link => {
+				const service = link.getAttribute('data-service');
+
+				// Kiểm tra nếu dịch vụ không khớp với activeService
+				if (service !== activeServiceName) {
+					link.classList.add('disabled'); // Thêm class để vô hiệu hóa
+					link.style.pointerEvents = 'none'; // Không cho nhấn
+					link.style.opacity = '0.6'; // Giảm độ trong suốt
+					link.style.cursor = 'not-allowed'; // Thay đổi con trỏ
+				}
+			});
+		});
+	</script>

@@ -13,9 +13,10 @@ class AppointmentController extends \Core\BaseController
 		if (isset($_POST['btnRegisterExamination']) && $_POST['btnRegisterExamination']) {
 
 			$patientCode = $_POST['patientCode'];
-			if($patientCode != "") {
+			$resultCheckPatientCode = null;
+			if ($patientCode != "") {
 				$resultCheckPatientCode = $this->Database->checkPatientCode($patientCode);
-				if(!$resultCheckPatientCode) {
+				if (!$resultCheckPatientCode) {
 					$_SESSION['message'] = 'Mã bệnh nhân không tồn tại!';
 					$_SESSION['message_type'] = false;
 					redirect('UserAppointmentRoute');
@@ -23,10 +24,10 @@ class AppointmentController extends \Core\BaseController
 			}
 
 			$resultInsertAppointentTemporary = $this->Database->insertAppointentTemporary($_POST, $resultCheckPatientCode);
-			if(!$resultInsertAppointentTemporary) {
+			if (!$resultInsertAppointentTemporary) {
 				$_SESSION['message'] = 'Lỗi thêm thông tin tạm thời cho lịch hẹn!';
 				$_SESSION['message_type'] = false;
-			}else {
+			} else {
 				$_SESSION['message'] = 'Thêm thông tin tạm thời cho lịch hẹn thành công!!!Chờ nhân viên liên hệ để xác nhận!!!!';
 				$_SESSION['message_type'] = false;
 			}
