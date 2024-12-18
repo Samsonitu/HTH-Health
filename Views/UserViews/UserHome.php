@@ -19,39 +19,43 @@ $extraJS = [
 <div class="thumbnails">
 	<img src="/public/img/banner/0.png" id="slideImg">
 </div>
-<div class="container">
+<div class="container-wrapper">
 	<div class="info-utilities">
 
-		<h2>Dịch vụ của chúng tôi</h2>
+
 		<div class="position-info">
 			<div class="p-left">
+				<h2>Dịch vụ của chúng tôi</h2>
 				<div class="p-l p-top">
-					<div class="utilities u-r">
-						<i class="fa-solid fa-calendar-days"></i>
-						<h5 onclick="clickSv('1')">Đặt lịch khám, lấy mẫu tại nhà</h5>
-						<p>Quý khách hàng sử dụng tiện ích này để đặt lịch lấy mẫu tại nhà hoặc đặt lịch khám chữa bệnh tại các cơ sở của HTH </p>
-						<span>Đặt lịch</span>
-						<img src="/public/img/service/Homepage_Bang+gia+dvu.png" alt="">
+					<div class="ult-left u-r" id="defaultOpen">
+						<i class="fa-solid fa-calendar-days icon-ult-left"></i>
+						<h5 class="H5-ult-left">Đặt lịch khám,<br>lấy mẫu tại nhà</h5>
+						<p class="intro-ult-left">Quý khách hàng sử dụng tiện ích này để đặt lịch lấy mẫu tại nhà hoặc đặt lịch khám chữa bệnh tại các cơ sở của HTH </p>
+						<button class="ult-btn">Đặt lịch</button>
+						<img src="/public/img/service/Homepage_Bang+gia+dvu.png" alt="" class="img-ult-left">
 					</div>
-					<div class="utilities">
-						<i class="fa-solid fa-magnifying-glass-plus"></i>
-						<h5 onclick="clickSv('2')">Tra cứu kết quả</h5>
-						<p>Quý khách hàng sử dụng tiện ích này để đặt lịch lấy mẫu tại nhà hoặc đặt lịch khám chữa bệnh tại các cơ sở của HTH</p>
-						<span>Tra cứu</span>
+					<div class="ult-left">
+						<i class="fa-solid fa-magnifying-glass-plus icon-ult-left"></i>
+						<h5 class="H5-ult-left">Tra cứu<br>kết quả</h5>
+						<p class="intro-ult-left">Quý khách hàng sử dụng tiện ích này để đặt lịch lấy mẫu tại nhà hoặc đặt lịch khám chữa bệnh tại các cơ sở của HTH</p>
+						<button class="ult-btn">Tra cứu</button>
+						<img src="/public/img/service/Homepage_tra+ket+qua-01.png" alt="" class="img-ult-left">
 					</div>
 				</div>
 				<div class="p-l p-bottom">
-					<div class="utilities u-r">
-						<i class="fa-solid fa-circle-dollar-to-slot"></i>
-						<h5 onclick="clickSv('3')">Bảng giá dịch vụ</h5>
-						<p>Quý khách hàng sử dụng tiện ích này để tra cứu giá dịch vụ y tế tại Hệ thống Y tế HTH</p>
-						<span>Xem bảng giá</span>
+					<div class="ult-left u-r">
+						<i class="fa-solid fa-circle-dollar-to-slot icon-ult-left"></i>
+						<h5 class="H5-ult-left">Bảng giá<br>dịch vụ</h5>
+						<p class="intro-ult-left">Quý khách hàng sử dụng tiện ích này để tra cứu giá dịch vụ y tế tại Hệ thống Y tế HTH</p>
+						<button class="ult-btn">Xem giá</button>
+						<img src="/public/img/service/utilities3-3.png" alt="" class="img-ult-left">
 					</div>
-					<div class="utilities">
-						<i class="fa-solid fa-circle-question"></i>
-						<h5 onclick="clickSv('4')">Hỏi đáp chuyên gia</h5>
-						<p>Quý khách hàng sử dụng tiện ích này để đặt câu hỏi và nhận hướng dẫn, giải đáp thắc mắc từ chuyên gia y tế của HTH</p>
-						<span>Xem bảng giá</span>
+					<div class="ult-left">
+						<i class="fa-solid fa-circle-question icon-ult-left"></i>
+						<h5 class="H5-ult-left">Hỏi đáp<br>chuyên gia</h5>
+						<p class="intro-ult-left">Quý khách hàng sử dụng tiện ích này để đặt câu hỏi và nhận hướng dẫn, giải đáp thắc mắc từ chuyên gia y tế của HTH</p>
+						<button class="ult-btn">Tư vấn</button>
+						<img src="/public/img/service/utilities4-3.png" alt="" class="img-ult-left">
 					</div>
 				</div>
 
@@ -61,7 +65,7 @@ $extraJS = [
 			<div class="p-right">
 				<div class="content-img">
 					<h5 id="getSv"></h5>
-					<img src="" alt="">
+					<img src="" alt="" class="img-ult-right">
 				</div>
 
 			</div>
@@ -81,9 +85,9 @@ $extraJS = [
 				<div class="show-info">
 					<div class="info-img"><img src="/public/img/doctor/20210311_avt-BS+Nghị.png" alt=""></div>
 					<div class="info-doc">
-						<p>Bác sĩ</p>
-						<h3>Nguyễn Quốc Dũng</h3>
-						<p>Chuyên khoa chẩn đoán hình ảnh</p>
+						<p class="docT">Bác sĩ</p>
+						<h5 class="docName">Nguyễn Quốc Dũng</h5>
+						<p class="docMajor">Chuyên khoa chẩn đoán hình ảnh</p>
 					</div>
 
 				</div>
@@ -98,11 +102,11 @@ $extraJS = [
 			<div class="box-info">
 
 				<div class="show-info">
-					<div class="info-img"><img src="/public/img/doctor/20210311_avt-BS+Nghị.png" alt=""></div>
+					<div class="info-img"><img class="info-img" src="/public/img/doctor/20210311_avt-BS+Nghị.png" alt=""></div>
 					<div class="info-doc">
-						<p>Bác sĩ</p>
-						<h3>Nguyễn Quốc Dũng</h3>
-						<p>Chuyên khoa chẩn đoán hình ảnh</p>
+						<p class="docT">Bác sĩ</p>
+						<h5 class="docName">Nguyễn Quốc Dũng</h5>
+						<p class="docMajor">Chuyên khoa chẩn đoán hình ảnh</p>
 					</div>
 
 				</div>
@@ -117,11 +121,11 @@ $extraJS = [
 			<div class="box-info">
 
 				<div class="show-info">
-					<div class="info-img"><img src="/public/img/doctor/20210311_avt-BS+Nghị.png" alt=""></div>
+					<div class="info-img"><img class="info-img" src="/public/img/doctor/20210311_avt-BS+Nghị.png" alt=""></div>
 					<div class="info-doc">
-						<p>Bác sĩ</p>
-						<h3>Nguyễn Quốc Dũng</h3>
-						<p>Chuyên khoa chẩn đoán hình ảnh</p>
+						<p class="docT">Bác sĩ</p>
+						<h5 class="docName">Nguyễn Quốc Dũng</h5>
+						<p class="docMajor">Chuyên khoa chẩn đoán hình ảnh</p>
 					</div>
 
 				</div>
@@ -136,11 +140,11 @@ $extraJS = [
 			<div class="box-info">
 
 				<div class="show-info">
-					<div class="info-img"><img src="/public/img/doctor/20210311_avt-BS+Nghị.png" alt=""></div>
+					<div class="info-img"><img class="info-img" src="/public/img/doctor/20210311_avt-BS+Nghị.png" alt=""></div>
 					<div class="info-doc">
-						<p>Bác sĩ</p>
-						<h3>Nguyễn Quốc Dũng</h3>
-						<p>Chuyên khoa chẩn đoán hình ảnh</p>
+						<p class="docT">Bác sĩ</p>
+						<h5 class="docName">Nguyễn Quốc Dũng</h5>
+						<p class="docMajor">Chuyên khoa chẩn đoán hình ảnh</p>
 					</div>
 
 				</div>
@@ -155,11 +159,11 @@ $extraJS = [
 			<div class="box-info">
 
 				<div class="show-info">
-					<div class="info-img"><img src="/public/img/doctor/20210311_avt-BS+Nghị.png" alt=""></div>
+					<div class="info-img"><img class="info-img" src="/public/img/doctor/20210311_avt-BS+Nghị.png" alt=""></div>
 					<div class="info-doc">
-						<p>Bác sĩ</p>
-						<h3>Nguyễn Quốc Dũng</h3>
-						<p>Chuyên khoa chẩn đoán hình ảnh</p>
+						<p class="docT">Bác sĩ</p>
+						<h5 class="docName">Nguyễn Quốc Dũng</h5>
+						<p class="docMajor">Chuyên khoa chẩn đoán hình ảnh</p>
 					</div>
 
 				</div>
@@ -247,7 +251,7 @@ $extraJS = [
 
 	<div class="info-news">
 
-		<div class="view">
+		<div class="view-all">
 			<div class="title-news">
 				<h2>Tin tức</h2>
 			</div>
@@ -261,7 +265,7 @@ $extraJS = [
 				<div class="item-news">
 					<img src="/public/img/news/3-pgs-ts-nguyen-thai-son.jpg.png" alt="">
 					<div class="description-news">
-						<h3>Bộ Y tế khuyến cáo người dân về tình hình dịch bệnh sởi</h3>
+						<h4>Bộ Y tế khuyến cáo người dân về tình hình dịch bệnh sởi</h4>
 						<p>Từ đầu năm 2024 đến nay, số ca mắc bệnh sởi tăng so với cùng kỳ năm 2023 và có xu hướng gia tăng tại một số địa phương.</p>
 					</div>
 
@@ -269,7 +273,7 @@ $extraJS = [
 				<div class="item-news">
 					<img src="/public/img/news/3-pgs-ts-nguyen-thai-son.jpg.png" alt="">
 					<div class="description-news">
-						<h3>Bộ Y tế khuyến cáo người dân về tình hình dịch bệnh sởi</h3>
+						<h4>Bộ Y tế khuyến cáo người dân về tình hình dịch bệnh sởi</h4>
 						<p>Từ đầu năm 2024 đến nay, số ca mắc bệnh sởi tăng so với cùng kỳ năm 2023 và có xu hướng gia tăng tại một số địa phương.</p>
 					</div>
 
@@ -279,7 +283,7 @@ $extraJS = [
 				<div class="item-news">
 					<img src="/public/img/news/3-pgs-ts-nguyen-thai-son.jpg.png" alt="">
 					<div class="description-news">
-						<h3>Bộ Y tế khuyến cáo người dân về tình hình dịch bệnh sởi</h3>
+						<h4>Bộ Y tế khuyến cáo người dân về tình hình dịch bệnh sởi</h4>
 						<p>Từ đầu năm 2024 đến nay, số ca mắc bệnh sởi tăng so với cùng kỳ năm 2023 và có xu hướng gia tăng tại một số địa phương.</p>
 					</div>
 
@@ -287,7 +291,7 @@ $extraJS = [
 				<div class="item-news">
 					<img src="/public/img/news/3-pgs-ts-nguyen-thai-son.jpg.png" alt="">
 					<div class="description-news">
-						<h3>Bộ Y tế khuyến cáo người dân về tình hình dịch bệnh sởi</h3>
+						<h4>Bộ Y tế khuyến cáo người dân về tình hình dịch bệnh sởi</h4>
 						<p>Từ đầu năm 2024 đến nay, số ca mắc bệnh sởi tăng so với cùng kỳ năm 2023 và có xu hướng gia tăng tại một số địa phương.</p>
 					</div>
 

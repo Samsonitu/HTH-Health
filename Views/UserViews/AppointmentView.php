@@ -78,7 +78,7 @@ $extraJS = [public_dir('js/UserJS/script.js')];
 
 				</div>
 				<div class="btn-sign-Appointment">
-					<input type="submit" class="btn btn-sign" name="btnRegisterExamination" value="Đặt lịch">
+					<input type="submit" class="btn-sign" name="btnRegisterExamination" value="Đặt lịch">
 				</div>
 			</div>
 		</div>

@@ -11,11 +11,11 @@ if (!empty($extraJS)) {
 <div class="footer">
 	<div class="footer-top">
 		<div class="intro-hospital">
-			<img src="/public/img/logo/logo-bg-white.png" alt="">
+			<img src="/public/img/logo/logo-bg-white.jpg" alt="">
 			<p>Hệ thống Phòng khám đa khoa HTH được điều hành bởi Công ty TNHH HTH Việt Nam. Những thông tin y khoa trên trang web chỉ dùng để tham khảo, bạn nên liên hệ bác sĩ để được tư vấn trước khi có bất cứ hành động nào.</p>
 		</div>
 
-		<div class="room-service">
+		<div class="room-service f-intro">
 			<h2>Hệ thống phòng khám</h2>
 			<div class="room">
 				<i class="fa-solid fa-location-dot"></i>
@@ -43,18 +43,18 @@ if (!empty($extraJS)) {
 			</div>
 		</div>
 
-		<div class="schedule-doc">
+		<div class="schedule-doc f-intro">
 			<h2>Lịch làm việc</h2>
 			<div class="task">
 				<h5>Thứ 2 - Thứ 7 | 8:00 - 17:00</h5>
 				<p>Tất cả các chuyên khoa</p>
 			</div>
 			<div class="task">
-				<h5>Thứ 2 - Thứ 6 | 17:00 - 20:00. Chỉ áp dụng tại CN Tân Bình và CN Quận 7</h5>
+				<h5>Thứ 2 - Thứ 6 | 17:00 - 20:00</h5>
 				<p>Khám Nhi, Xét nghiệm Nhi & Xét nghiệm nhanh Covid</p>
 			</div>
 			<div class="task">
-				<h5>Chủ nhật | 8:00 - 12:00. Chỉ áp dụng tại CN Tân Bình và CN Quận 7</h5>
+				<h5>Chủ nhật | 8:00 - 12:00</h5>
 				<p>Khám Nhi, Xét nghiệm Nhi & Xét nghiệm nhanh Covid</p>
 			</div>
 			<div class="task">
@@ -63,8 +63,8 @@ if (!empty($extraJS)) {
 			</div>
 		</div>
 
-		<div class="society">
-			<h2>LIÊN Hệ</h2>
+		<div class="society f-intro">
+			<h2>Liên hệ</h2>
 			<div class="contact">
 				<p>Hotline:</p>
 				<p class="phone">1900 0000 - 093 647 7799</p>
@@ -72,10 +72,10 @@ if (!empty($extraJS)) {
 			<div class="social">
 				<h5>LIÊN KẾT MẠNG XÃ HỘI</h5>
 				<div class="social-icon">
-					<i class="fa-brands fa-facebook"></i>
-					<i class="fa-brands fa-tiktok"></i>
-					<img src="/public/img/logo/Icon_of_Zalo.svg.webp" alt="">
-					<i class="fa-brands fa-youtube"></i>
+					<i class="fa-brands fa-facebook icon-ft-social"></i>
+					<i class="fa-brands fa-tiktok icon-ft"></i>
+					<img src="/public/img/logo/Icon_of_Zalo.svg.webp" alt="" class="img-ft-social">
+					<i class="fa-brands fa-youtube icon-ft"></i>
 				</div>
 
 

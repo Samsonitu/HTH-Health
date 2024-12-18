@@ -26,17 +26,17 @@
 
 		<div class="header-info">
 
-			<div class="map h-info">
+			<div class="map-head h-info">
 				<i class="fa-solid fa-location-dot"></i>
 				<p>Số 269 Điện Biên Phủ, phường Võ Thị Sáu, quận 3, Tp. HCM</p>
 			</div>
 
-			<div class="contact h-info">
+			<div class="contact-head h-info">
 				<i class="fa-regular fa-envelope"></i>
 				<p>contact@phongkham.com</p>
 			</div>
 
-			<div class="schedule h-info">
+			<div class="schedule-head h-info">
 				<i class="fa-regular fa-clock"></i>
 				<p>8:00-20:00</p>
 			</div>
@@ -44,45 +44,54 @@
 		</div>
 
 		<div class="header-navbar">
+			<div class="header-wrapper">
+				<div class="nav-info h-navbar">
+					<div class="img-nav-info">
+						<img src="/public/img/logo/logo-bg-white.png" alt="">
+					</div>
+					<h3>Bác sĩ riêng của bạn</h3>
+				</div>
 
-			<div class="nav-info h-navbar">
-				<img src="/public/img/logo/logo-bg-white.png" alt="">
-				<h3>Bác sĩ riêng của bạn</h3>
+				<div class="nav-search h-navbar">
+					<input type="search" placeholder="Tìm kiếm" class="search-box">
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</div>
+
+				<div class="nav-phone h-navbar">
+					<button name="phone" class="btn"><i class="fa-solid fa-phone"></i></button>
+					<p>Hotline:</p>
+					<p class="phone">1900 1111</p>
+				</div>
+
+				<div class="nav-examine h-navbar">
+					<button name="examine" class="btn"><i class="fa-solid fa-house"></i></button>
+					<p>Phòng khám online</p>
+				</div>
 			</div>
 
-			<div class="nav-search h-navbar">
-				<input type="search" placeholder="Tìm kiếm" class="search-box">
-				<i class="fa-solid fa-magnifying-glass"></i>
-			</div>
 
-			<div class="nav-phone h-navbar">
-				<button name="phone" class="btn"><i class="fa-solid fa-phone"></i></button>
-				<p>Hotline:</p>
-				<p class="phone">1900 1111</p>
-			</div>
-
-			<div class="nav-examine h-navbar">
-				<button name="examine" class="btn"><i class="fa-solid fa-house"></i></button>
-				<p>Phòng khám online</p>
-			</div>
 
 		</div>
 
 		<div class="header-menu">
 
 			<ul class="menu">
-				<li><a href="/">Trang chủ</a></li>
-				<li><a href="">Giới thiệu</a></li>
-				<li><a href="">Dịch vụ</a></li>
-				<li><a href="">Hỏi đáp bác sĩ</a></li>
-				<li><a href="">Tin tức</a></li>
-				<li><a href="">Hỗ trợ</a></li>
-				<li>
-					<a href="<?= route('UserLoginRoute') ?>">Đăng nhập</a> /
-					<a href="<?= route('UserLoginRoute') ?>">Đăng ký</a>
-				</li>
-				<button name="navSchedule"><i class="fa-solid fa-calendar-days"></i>Đặt lịch</button>
+				<li class="nav-item"><a href="/" class="menu-h-link">Trang chủ</a></li>
+				<li class="nav-item"><a href="" class="menu-h-link">Giới thiệu</a></li>
+				<li class="nav-item"><a href="" class="menu-h-link">Dịch vụ</a></li>
+				<li class="nav-item"><a href="" class="menu-h-link">Hỏi đáp</a></li>
+				<li class="nav-item"><a href="" class="menu-h-link">Tin tức</a></li>
+				<li class="nav-item"><a href="" class="menu-h-link">Hỗ trợ</a></li>
+				<ul class="sign-h-menu">
+					<li class="sign-link"><a href="<?= route('UserLoginRoute') ?>">Đăng nhập</a></li> /
+					<li class="sign-link"><a href="<?= route('UserRegisterRoute') ?>">Đăng ký</a></li>
+				</ul>
 			</ul>
+
+			<button name="navSchedule" class="btn-sdl-exam">
+				<i class="fa-solid fa-calendar-days icon-sdl"></i>
+				<a href="Dat-lich-kham" class="link-sdl">Đặt lịch</a>
+			</button>
 
 		</div>
 
