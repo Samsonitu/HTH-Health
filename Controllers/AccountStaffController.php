@@ -14,14 +14,10 @@ class AccountStaffController extends \Core\BaseController
 			$password = $_POST['password'];
 
 			$resultLogin = $this->Database->checkLogin($username, $password);
-			if(!$resultLogin) {
-				redirect('AccountStaffLoginRoute');
-			}
+			if(!$resultLogin) redirect('AccountStaffLoginRoute');
 
 			$staffInfo = $this->Database->getStaffInfo($resultLogin[0]);
-			if(!$staffInfo) {
-				redirect('AccountStaffLoginRoute');
-			}
+			if(!$staffInfo) redirect('AccountStaffLoginRoute');
 
 
 			if($resultLogin[0]['role'] == 1) {

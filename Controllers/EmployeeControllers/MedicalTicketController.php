@@ -24,13 +24,6 @@ class MedicalTicketController extends \Core\BaseController
 
       header('Content-Type: application/json');
       $listQueueResult = $this->Database->getTheQueueListByCounterID($_SESSION['employeeInfo']['counterID']);
-      if(!$listQueueResult) {
-        echo json_encode([
-          'success' => false,
-          'message' => 'Lỗi khi lấy danh sách hàng chờ'
-        ]);
-        exit;
-      }
       echo json_encode([
         'success' => true,
         'message' => 'Lấy danh sách hàng chờ thành công',

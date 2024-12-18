@@ -13,6 +13,7 @@ class AppointmentController extends \Core\BaseController
 		if (isset($_POST['btnRegisterExamination']) && $_POST['btnRegisterExamination']) {
 
 			$patientCode = $_POST['patientCode'];
+			$resultCheckPatientCode = null;
 			if($patientCode != "") {
 				$resultCheckPatientCode = $this->Database->checkPatientCode($patientCode);
 				if(!$resultCheckPatientCode) {

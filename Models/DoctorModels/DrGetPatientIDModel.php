@@ -16,11 +16,7 @@ class DrGetPatientIDModel extends Model
 		return $this->SelectRow($query, [$patientID]);
 	}
 
-	public function updatePatientStatus($medicalID)
-	{
-		$query = "UPDATE `medicalform` SET `status` = 1 WHERE `ID` = ?";
-		return $this->UpdateRow($query, [$medicalID]);
-	}
+	
 
 	public function getPatientPresent($medicalID)
 	{

@@ -331,11 +331,6 @@
     const listServices = <?php echo json_encode($listServices) ?>;
     const listDoctorInfo = <?php echo json_encode($listDoctorInfo) ?>;
 
-    const formatterPrice = new Intl.NumberFormat('vi-VN', {
-        style: 'currency',
-        currency: 'VND'
-    });
-
     formBook.addEventListener('submit', (event)=>{
         event.preventDefault();
         if(hiddenServiceIDs.value == "[]" || hiddenServiceIDs.value == "") {
@@ -511,13 +506,13 @@
                             <tr>
                                 <td class="text-center">${index + 1}</td>
                                 <td>${element.serviceName}</td>
-                                <td class="text-end">${formatterPrice.format(element.price)}</td>
+                                <td class="text-end">${formatCurrencyVND(element.price)}</td>
                             </tr>
                         `).join('')}
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="4" class="text-end fw-bold">Tổng tiền: ${formatterPrice.format(data.totalPrice)}</td>
+                            <td colspan="4" class="text-end fw-bold">Tổng tiền: ${formatCurrencyVND(data.totalPrice)}</td>
                         </tr>
                     </tfoot>
                 </table>
@@ -624,21 +619,9 @@
             // Hiển thị giới tính bệnh nhân
             formBooked.querySelector('input[name="patientGender"]').value = patientGuardianInfo.patientGender === 'man' ? "Nam" : "Nữ";
             
-            // Hiển thị ngày sinh bệnh nhân theo định dạng dd-mm-yyyy
-            if (patientGuardianInfo.patientBirthday) {
-                const birthday = new Date(patientGuardianInfo.patientBirthday);
-                const day = String(birthday.getDate()).padStart(2, '0');
-                const month = String(birthday.getMonth() + 1).padStart(2, '0');
-                const year = birthday.getFullYear();
-                formBooked.querySelector('input[name="patientBirthday"]').value = `${day}-${month}-${year}`;
-            }
-
-            // Tính toán tuổi bệnh nhân
-            if (patientGuardianInfo.patientBirthday) {
-                const birthday = new Date(patientGuardianInfo.patientBirthday);
-                const age = calculateAge(birthday);
-                formBooked.querySelector('input[name="patientAge"]').value = age;
-            }
+            const patientBirthday = calculateAgeAndFormat(patientGuardianInfo.patientBirthday);
+            formBooked.querySelector('input[name="patientBirthday"]').value = patientBirthday.formattedDate;
+            formBooked.querySelector('input[name="patientAge"]').value = patientBirthday.age;
 
             // Hiển thị tên người giám hộ
             formBooked.querySelector('input[name="guardianName"]').value = patientGuardianInfo.guardianName ? patientGuardianInfo.guardianName : "";
@@ -646,20 +629,9 @@
             // Hiển thị giới tính người giám hộ
             formBooked.querySelector('input[name="guardianGender"]').value = patientGuardianInfo.guardianGender === 'man' ? "Nam" : "Nữ";
 
-            if (patientGuardianInfo.guardianBirthday) {
-                const birthday = new Date(patientGuardianInfo.guardianBirthday);
-                const day = String(birthday.getDate()).padStart(2, '0');
-                const month = String(birthday.getMonth() + 1).padStart(2, '0');
-                const year = birthday.getFullYear();
-                formBooked.querySelector('input[name="guardianBirthday"]').value = `${day}-${month}-${year}`;
-            }
-
-            // Tính toán tuổi người giám hộ
-            if (patientGuardianInfo.guardianBirthday) {
-                const guardianBirthday = new Date(patientGuardianInfo.guardianBirthday);
-                const guardianAge = calculateAge(guardianBirthday);
-                formBooked.querySelector('input[name="guardianAge"]').value = guardianAge;
-            }
+            const guardianBirthday = calculateAgeAndFormat(patientGuardianInfo.guardianBirthday);
+            formBooked.querySelector('input[name="guardianBirthday"]').value = guardianBirthday.formattedDate;
+            formBooked.querySelector('input[name="guardianAge"]').value = guardianBirthday.age;
 
             // Hiển thị số điện thoại người giám hộ
             formBooked.querySelector('input[name="phoneNumber"]').value = patientGuardianInfo.phoneNumber ? patientGuardianInfo.phoneNumber : "";
@@ -677,7 +649,7 @@
             formBooked.querySelector('textarea[name="selectedServiceNames"]').value = listPreSelectedService.map(element => element.serviceName).join(' - ');
             formBooked.querySelector('input[name="selectedServiceIDs"]').value = `[${appointmentInfo.services}]`;
 
-            formBooked.querySelector('#total-price').innerText = formatterPrice.format(appointmentInfo.totalPrice);
+            formBooked.querySelector('#total-price').innerText = formatCurrencyVND(appointmentInfo.totalPrice);
             formBooked.querySelector('input[name="totalPrice"]').value = appointmentInfo.totalPrice;
 
             let preAppointedDoctor = appointmentInfo.doctorCode;

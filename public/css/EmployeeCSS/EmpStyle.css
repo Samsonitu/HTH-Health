@@ -437,6 +437,26 @@ article .section-patient {
     justify-content: space-between;
 }
 
+.section-patient-records__header .nav{
+    --bs-nav-link-padding-x: 1rem;
+    --bs-nav-link-padding-y: 0;
+}
+
+.section-patient-records__header .nav-link {
+    color: #000;
+    font-weight: 500;
+    height: 100%;
+    padding: 2px 1rem;
+    border: 1px solid transparent;
+    border-radius: 20px;
+}
+
+.section-patient-records__header .nav-link.active {
+    color: #4FB5DD;
+    border: 1px solid #4FB5DD;
+    border-radius: 20px;
+}
+
 .section-appointment__controls,
 .section-patient-records__controls {
     display: flex;
@@ -515,6 +535,11 @@ article .section-patient {
     overflow: auto;
 }
 
+.section-patient-records__body .tab-pane {
+    padding: 0;
+    margin: 0;
+}
+
 .section-appointment__body thead,
 .section-patient-records__body thead {
     position: sticky;
@@ -569,6 +594,7 @@ article .section-patient {
 .section-patient-records__body tr i {
     opacity: 0.8;
     color: #4FB5DD;
+    font-size: 16px;
 }
 
 .section-appointment__body tbody i:hover,

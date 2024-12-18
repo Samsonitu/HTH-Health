@@ -438,11 +438,12 @@
 
     // Begin function render modal addition patient Code
         function renderModalAdditionPatientCode(patientInfo) {
+            const patientBirthday = calculateAgeAndFormat(patientInfo.patientBirthday)
             modalAdditionPatientCode.querySelector('ul').style = "visibility: unset;"
             modalAdditionPatientCode.querySelector('.tab-content').style = "visibility: unset;"
             modalAdditionPatientCode.querySelector('#patientName').value = patientInfo.patientName;
             modalAdditionPatientCode.querySelector('#patientGender').value = patientInfo.patientGender == 'man' ? 'Nam' : 'Nữ';
-            modalAdditionPatientCode.querySelector('#patientBirthday').value = patientInfo.patientBirthday;
+            modalAdditionPatientCode.querySelector('#patientBirthday').value = patientBirthday.formattedBirthday;
             modalAdditionPatientCode.querySelector('#allergies').value = patientInfo.allergies ? patientInfo.allergies : "Chưa bổ sung";
             modalAdditionPatientCode.querySelector('#medicalHistory').value = patientInfo.medicalHistory ? patientInfo.medicalHistory : "Chưa bổ sung";
 

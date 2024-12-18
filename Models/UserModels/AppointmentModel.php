@@ -24,20 +24,21 @@ class AppointmentModel extends Model
 			VALUES(?, ?, ?, ?, NOW())";
 			return $this->InsertRow($Query, [$resultCheckPatientCode[0]['patientID'], $resultCheckPatientCode[0]['patientCode'] , date('Y-m-d H:i:s', $apptDateTime), $temporaryInfo['symptom']]);
 		}else {
+			$currentDateTime = date("Y-m-d H:i:s");
 			// Insert guardian
 				$Query1 = "INSERT INTO `guardian`
-				(`guardianName`, `phoneNumber`) 
-				VALUES (?, ?)";
-				$resultQuery1 = $this->InsertRow($Query1, [$temporaryInfo['guardianName'], $temporaryInfo['phoneNumber']] , true);
+				(`guardianName`, `phoneNumber`, `createAt`) 
+				VALUES (?, ?, ?)";
+				$resultQuery1 = $this->InsertRow($Query1, [$temporaryInfo['guardianName'], $temporaryInfo['phoneNumber'], $currentDateTime] , true);
 				if(!$resultQuery1) {
 					return ['message_type' => false, 'message' => 'Lỗi khi thêm thông tin tạm của người giám hộ'];
 				}
 
 			// Insert patient
 				$Query2 = "INSERT INTO `patient`
-				(`guardianID`, `patientName`, `patientGender`, `patientBirthday`)
-				VALUES(?, ?, ?, ?)";
-				$resultQuery2 = $this->InsertRow($Query2, [$resultQuery1, $temporaryInfo['patientName'], $temporaryInfo['patientGender'], $temporaryInfo['patientBirthday']], true);
+				(`guardianID`, `patientName`, `patientGender`, `patientBirthday`, `createAt`)
+				VALUES(?, ?, ?, ?, ?)";
+				$resultQuery2 = $this->InsertRow($Query2, [$resultQuery1, $temporaryInfo['patientName'], $temporaryInfo['patientGender'], $temporaryInfo['patientBirthday'], $currentDateTime], true);
 				if(!$resultQuery2) {
 					return ['message_type' => false, 'message' => 'Lỗi khi thêm thông tin tạm của bệnh nhân'];
 				}
