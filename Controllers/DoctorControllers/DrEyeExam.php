@@ -9,6 +9,7 @@ class DrEyeExam extends \Core\BaseController
 	protected string $Model = "DoctorModels\DrEyeExamModel";
 	public function DrEyeExam()
 	{
+		$this->checkAuthDoctor();
 		if (isset($_SESSION['getPatientID'])) {
 			$patientID = $_SESSION['getPatientID'];
 			$checkData = $this->Database->renderInforPatient($patientID);
@@ -24,4 +25,8 @@ class DrEyeExam extends \Core\BaseController
 			view('DoctorViews/DrEyeExam');
 		}
 	}
+	public function checkAuthDoctor()
+    {
+        if(!isset($_SESSION['doctorInfo']) && empty($_SESSION['doctorInfo'])) redirect('AccountStaffLoginRoute');
+    }
 }

@@ -1,0 +1,373 @@
+/* DOCTOR-INFO */
+
+.article__non-details-info {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.article__show-info {
+    width: 100%;
+    height: 22.4em;
+    text-align: center;
+    padding-top: 0.1em;
+}
+
+.article__info-img {
+    width: 8em;
+    height: 8em;
+    margin: 0 auto;
+    margin-bottom: 1em;
+    box-shadow: 0 0 0.06em gray;
+    border-radius: 50%;
+}
+
+.article__info-img > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+
+.article__info-doc {
+    width: 9em;
+    height: 2em;
+    margin: 0 auto;
+}
+
+.article__docT {
+    font-size: 0.9em;
+}
+
+.article__docMajor {
+    font-size: 0.9em;
+}
+
+.article__info-doc > h3,
+.article__info-doc > p {
+    margin-bottom: 0.05em;
+    width: 100%;
+}
+
+.article__info-doc > h3 {
+    height: 2.5em;
+}
+
+.article__info-doc > p {
+    height: 1.9em;
+    line-height: 1.9em;
+}
+
+.article__info-doctors {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 3.8em;
+    background-color: #EFF6FF;
+}
+
+.article__non-details-info {
+    width: 100%;
+    height: 22.9em;
+    display: flex;
+    flex-direction: row;
+}
+
+.article__box-info {
+    width: 17%;
+    height: 18em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.article__show-info {
+    width: 100%;
+    height: 22.4em;
+    text-align: center;
+    padding-top: 0.1em;
+}
+
+.article__info-img {
+    width: 8em;
+    height: 8em;
+    margin: 0 auto;
+    margin-bottom: 1em;
+    box-shadow: 0 0 0.06em gray;
+    border-radius: 50%;
+    border: 3px solid #ccc;
+}
+
+.article__info-img.active,
+.article__info-img:hover {
+    background-color: #48a1d8;
+    border-color: #48a1d8;
+    transition: all .3s ease;
+    cursor: pointer;
+}
+
+.article__info-img > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+
+.article__info-doc {
+    width: 9em;
+    height: 2em;
+    margin: 0 auto;
+}
+
+.article__docT {
+    font-size: 0.9em;
+}
+
+.article__docMajor {
+    font-size: 0.9em;
+}
+
+.article__info-doc > h3,
+.article__info-doc > p {
+    margin-bottom: 0.05em;
+    width: 100%;
+}
+
+.article__info-doc > h3 {
+    height: 2.5em;
+}
+
+.article__info-doc > p {
+    height: 1.9em;
+    line-height: 1.9em;
+}
+
+.article__full-details-info {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2em;
+}
+
+.article__image-container {
+    flex: 1;
+}
+
+.article__image {
+    width: 100%;
+    height: auto;
+}
+
+.article__details {
+    flex: 2;
+    padding-left: 1em;
+}
+
+.article__doctor-name {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.article__doctor-specialty {
+    font-size: 1.2em;
+    margin-bottom: 1em;
+}
+
+.article__section-title {
+    font-size: 1.1em;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+.article__text {
+    font-size: 1em;
+    line-height: 1.5em;
+    margin-bottom: 1em;
+}
+
+/* DOCTOR-INFO */
+
+/* USER-COMMENT */
+.user-comment {
+    padding: 20px;
+    background: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.user-comment h2 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.service-comment {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.service-name h4 {
+    font-size: 1.3em;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+.comment-line {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.comment-line:last-child {
+    border-bottom: none;
+}
+
+.circle-face {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+.circle-face img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+}
+
+.circle-face i {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    color: white;
+    background-color: royalblue;
+    padding: 5px;
+    border-radius: 50%;
+    font-size: 0.8em;
+}
+
+.doc-comment {
+    flex: 1;
+    text-align: left;
+}
+
+.doc-comment h5 {
+    font-size: 1em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.doc-comment p {
+    font-size: 0.9em;
+    color: #555;
+    line-height: 1.4;
+}
+
+
+/* USER-COMMENT */
+
+/* Tổng thể */
+.info-news {
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề */
+.view-all {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.title-news {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.all-news {
+    text-decoration: none;
+    font-size: 16px;
+    color: #DA2032;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.all-news i {
+    margin-left: 5px;
+}
+
+/* Danh sách tin tức */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.item-news {
+    display: flex;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.item-news:hover {
+    transform: translateY(-5px);
+}
+
+.item-news img {
+    width: 220px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 10px;
+}
+
+.description-news h4 {
+    font-size: 16px;
+    margin: 0;
+    color: #222;
+}
+
+.description-news p {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+}
+
+/* Nút chuyển trang */
+.btn-news {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.btn-news button {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background: #ccc;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.btn-news button.active,
+.btn-news button:hover {
+    background: #DA2032;
+}

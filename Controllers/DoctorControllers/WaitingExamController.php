@@ -11,49 +11,41 @@ class WaitingExamController extends \Core\BaseController
 	public function getWaitingExamList()
 	{
 		header('Content-Type: application/json');
-      $resultWaitingExamList = $this->Database->getWaitingExamList();
-      if(!$resultWaitingExamList) {
-        echo json_encode([
-          'success' => false,
-          'message' => 'Lỗi khi lấy danh sách hàng chờ'
-        ]);
-        exit;
-      }
-      echo json_encode([
-        'success' => true,
-        'message' => 'Không có bệnh nhân nào chờ khá',
-        'data' => $resultWaitingExamList
-      ]);
-      exit;
+		$resultWaitingExamList = $this->Database->getWaitingExamList();
+		if (!$resultWaitingExamList) {
+			echo '<script>console.log(' . $resultWaitingExamList . ')</script>';
+			echo json_encode([
+				'success' => false,
+				'message' => 'Lỗi khi lấy danh sách hàng chờ'
+			]);
+			exit;
+		}
+		echo json_encode([
+			'success' => true,
+			'message' => 'Không có bệnh nhân nào chờ khám',
+			'data' => $resultWaitingExamList
+		]);
+		exit;
 	}
 
-  public function receptionPatient(){
-    if (isset($_POST['btnReceptionPatient']) && ($_POST['btnReceptionPatient'])) {
-      $resultReceptionPatient = $this->Database->receptionPatient($_POST);
-      if(!$resultReceptionPatient) {
-        $_SESSION['message'] = 'Tiếp nhận bệnh nhân thành công!';
-        $_SESSION['message_type'] = false;
-      }else {
-        $_SESSION['message'] = 'Tiếp nhận bệnh nhân thành công!';
-        $_SESSION['message_type'] = true;
-      }
-      view('DoctorViews/DrGeneralMedical', compact('resultReceptionPatient'));
+	public function receptionPatient()
+	{
+		if (isset($_POST['btnReceptionPatient']) && ($_POST['btnReceptionPatient'])) {
+			$resultReceptionPatient = $this->Database->receptionPatient($_POST);
+			$resultGetServiceName = $this->Database->getServiceName($_POST['formID']);
+
+			$_SESSION['patientCode'] = $_POST['patientCode'];
+			$_SESSION['formID'] = $_POST['formID'];
+			if (!$resultReceptionPatient && !$resultGetServiceName) {
+				$_SESSION['message'] = 'Tiếp nhận bệnh nhân không thành công!';
+				$_SESSION['message_type'] = false;
+			} else {
+				$_SESSION['resultReceptionPatient'] = $resultReceptionPatient;
+				$_SESSION['serviceName'] = $resultGetServiceName;
+				$_SESSION['message'] = 'Tiếp nhận bệnh nhân thành công!';
+				$_SESSION['message_type'] = true;
+			}
+			redirect('DrGeneralMedical');
 		}
-  }
+	}
 }
-/* 
-header('Content-Type: application/json');
-      $listQueueResult = $this->Database->getTheQueueListByCounterID($_SESSION['employeeInfo']['counterID']);
-      if(!$listQueueResult) {
-        echo json_encode([
-          'success' => false,
-          'message' => 'Lỗi khi lấy danh sách hàng chờ'
-        ]);
-        exit;
-      }
-      echo json_encode([
-        'success' => true,
-        'message' => 'Lấy danh sách hàng chờ thành công',
-        'data' => $listQueueResult
-      ]);
-      exit; */

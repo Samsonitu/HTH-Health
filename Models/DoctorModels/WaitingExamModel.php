@@ -2,6 +2,7 @@
 
 namespace Models\DoctorModels;
 
+
 use Core\Model;
 
 class WaitingExamModel extends Model
@@ -16,18 +17,35 @@ class WaitingExamModel extends Model
 			INNER JOIN services as s ON md.serviceID = s.serviceID
 
 			WHERE DATE(m.createAt) = CURRENT_DATE() AND m.status !=2
-		
+
 			GROUP BY m.formID, p.patientCode, p.patientName, m.createAt, m.status;";
 		return $this->SelectRow($query);
 	}
 
 	public function receptionPatient($medicalPatientForm)
 	{
-		$query1 = "UPDATE `medical_form` 
-		SET `status` = 1 
+		$query1 = "UPDATE `medical_form`
+		SET `status` = 1
 		WHERE `formID` = ? AND patientCode = ?";
 		$result1 = $this->UpdateRow($query1, [$medicalPatientForm['formID'], $medicalPatientForm['patientCode']], true);
-		if(!$result1) return false;
+		if (!$result1) return false;
 		return $medicalPatientForm['formID'];
+	}
+
+	public function getServiceName($formID)
+	{
+		$query = "SELECT
+									services.serviceName
+							FROM
+									medical_form
+							JOIN
+									medical_form_details ON medical_form.formID = medical_form_details.formID
+							JOIN
+									services ON medical_form_details.serviceID = services.serviceID
+							WHERE
+									medical_form.formID = ?;
+		";
+
+		return $this->SelectRow($query, [$formID]);
 	}
 }

@@ -24,6 +24,11 @@ class AccountStaffController extends \Core\BaseController
 				$_SESSION['employeeInfo'] = $staffInfo[0];
 				redirect('MedicalTicketRoute');
 			}
+
+			if($resultLogin[0]['role'] == 2) {
+				$_SESSION['doctorInfo'] = $staffInfo[0];
+				redirect('DrIndexRoute');
+			}
 			
 		}else {
 			view('AccountStaff');

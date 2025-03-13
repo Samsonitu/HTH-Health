@@ -15,7 +15,7 @@ class AppointmentModel extends Model
 		return $this->SelectRow($Query, [$patientCode]);
 	}
 
-	public function insertAppointentTemporary($temporaryInfo, $resultCheckPatientCode = null)
+	public function insertAppointmentTemporary($temporaryInfo, $resultCheckPatientCode = null)
 	{
 		if($resultCheckPatientCode != null) {
 			$apptDateTime = strtotime($temporaryInfo['apptDate'] . ' ' . $temporaryInfo['apptTime']);

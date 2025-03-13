@@ -1,108 +1,109 @@
 <?php
 
-$Title = "Đặt lịch khám";
+$Title = "Đặt Lịch Khám | HTH Health";
 
-$extraCSS = [public_dir('css/UserCSS/style.css')];
+$extraCSS = [
+	public_dir('css/UserCSS/style.css'), 
+	public_dir('css/UserCSS/appointment.css')
+];
 $extraJS = [public_dir('js/UserJS/script.js')];
 ?>
 
 <?php require_once __DIR__ . "/../UserLayouts/UserHeader.php"; ?>
 
-
 <div class="container">
-	<form action="<?= route('UserAppointmentRoute') ?>" method="POST" class="AppointmentForm">
+    <div class="appointment">
+        <!-- Tiêu đề -->
+        <div class="text-center mb-4">
+            <h2 class="appointment__title">ĐẶT LỊCH KHÁM</h2>
+            <p class="appointment__description">Vui lòng điền thông tin vào form bên dưới</p>
+        </div>
 
-		<div class="form-Appointment">
+        <form action="<?= route('UserAppointmentRoute') ?>" method="POST" class="appointment__form">
+            <div class="row">
+                <!-- Cột trái -->
+                <div class="col-md-6">
+                    <div class="section-title">Thông tin bệnh nhân</div>
+                    
+                    <div class="mb-3">
+                        <label for="patientCode" class="form-label">Mã bệnh nhân (nếu có):</label>
+                        <input type="text" class="form-control" id="patientCode" name="patientCode">
+                    </div>
 
-			<div class="Note-info">
-				<h4>Lưu ý</h4>
-				<p>1. Lịch hẹn có hiệu lực sau khi có xác nhận chính thức từ Phòng khám HTH</p>
-				<p>2. Quý khánh hàng vui lòng cung cấp thông tin chính xác để được phục vụ tốt nhất. Trong trường hợp cung cấp sai thông tin email &amp; điện thoại, việc xác nhận cuộc hẹn sẽ không hiệu lực.</p>
-				<p>3. Quý khách sử dụng dịch vụ đặt hẹn trực tuyến, xin vui lòng đặt trước ít nhất là 24 giờ trước khi đến khám.</p>
-				<p>4. Trong trường hợp khẩn cấp hoặc nghi ngờ có các triệu chứng nguy hiểm, quý khách vui lòng ĐẾN TRỰC TIẾP Phòng khám hoặc các trung tâm y tế gần nhất để kịp thời xử lý.</p>
-			</div>
-			<div class="Form-info">
+                    <div class="mb-3">
+                        <label for="patientName" class="form-label">Tên bệnh nhân:</label>
+                        <input type="text" class="form-control" id="patientName" name="patientName" required>
+                    </div>
 
-				<div class="title-form">
-					<h2>ĐẶT LỊCH KHÁM</h2>
-					<p>vui lòng điền thông tin vào form bên dưới để đẩ đăng ký khám bệnh theo yêu cầu</p>
-				</div>
-				<div class="open-form register" id="register">
-					<div class="f-i patient-info">
-						<div class="p-g patientID">
-							<label>Mã bệnh nhân(nếu có):</label><br>
-							<input type="text" name="patientCode">
-						</div>
-						<div class="p-g name">
-							<label>Tên bệnh nhân:</label><br>
-							<input type="text" name="patientName" required>
-						</div>
-						<div class="birth-gen">
-							<div class="p-g birthday">
-								<label>Ngày sinh:</label>
-								<input type="date" name="patientBirthday" required>
-							</div>
-							<div class="p-g gender">
-								<label>Giới tính: </label>
-								<input id="patientMan" type="radio" name="patientGender" value="man" required><label for="patientMan">Nam</label>
-								<input id="patientWoman" type="radio" name="patientGender" value="woman"><label for="patientWoman">Nữ</label>
-							</div>
-						</div>
+                    <div class="mb-3">
+                        <label for="patientBirthday" class="form-label">Ngày sinh:</label>
+                        <input type="date" class="form-control" id="patientBirthday" name="patientBirthday" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Giới tính:</label>
+                        <div class="gender-options">
+                            <div class="gender-option">
+                                <input type="radio" id="patientMan" name="patientGender" value="man" required>
+                                <label for="patientMan">Nam</label>
+                            </div>
+                            <div class="gender-option">
+                                <input type="radio" id="patientWoman" name="patientGender" value="woman">
+                                <label for="patientWoman">Nữ</label>
+                            </div>
+                        </div>
+                    </div>
 
-					</div>
-					<div class="manifest-patient">
-						<label>Triệu chứng - Biểu hiện:</label>
-						<textarea name="symptom" class="manifest" rows="6" required></textarea>
-					</div>
-					<hr>
-					<div class="f-i guardian-info">
-						<div class="p-g name">
-							<label>Tên người bảo hộ:</label><br>
-							<input type="text" name="guardianName" required>
-						</div>
-						<div class="p-g phone">
-							<label>Số điện thoại:</label><br>
-							<input type="tel" name="phoneNumber" required>
-						</div>
-					</div>
-					<hr>
-					<div class="f-i AppointmentTime">
-						<div class="Time">
-							<label>Thời gian đặt lịch:</label><br>
-							<input type="date" name="apptDate" required>
-							<input type="time" name="apptTime" required>
-						</div>
-					</div>
+                    <div class="mb-3">
+                        <label for="symptom" class="form-label">Triệu chứng - Biểu hiện:</label>
+                        <textarea id="symptom" name="symptom" class="form-control" rows="4" required></textarea>
+                    </div>
+                </div>
+                
+                <!-- Cột phải -->
+                <div class="col-md-6">
+                    <div class="section-title">Thông tin người bảo hộ</div>
+                    
+                    <div class="mb-3">
+                        <label for="guardianName" class="form-label">Tên người bảo hộ:</label>
+                        <input type="text" class="form-control" id="guardianName" name="guardianName" required>
+                    </div>
 
+                    <div class="mb-3">
+                        <label for="phoneNumber" class="form-label">Số điện thoại:</label>
+                        <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" required>
+                    </div>
 
+                    <div class="section-title mt-4">Thời gian đặt lịch</div>
+                    
+                    <div class="mb-3">
+                        <label for="apptDate" class="form-label">Ngày đặt lịch:</label>
+                        <input type="date" class="form-control" id="apptDate" name="apptDate" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="apptTime" class="form-label">Giờ khám:</label>
+                        <input type="time" class="form-control" id="apptTime" name="apptTime" required>
+                    </div>
+                </div>
+            </div>
 
-				</div>
-				<div class="btn-sign-Appointment">
-					<input type="submit" class="btn-sign" name="btnRegisterExamination" value="Đặt lịch">
-				</div>
-			</div>
-		</div>
-
-	</form>
+            <!-- Nút gửi -->
+            <div class="text-center mt-4">
+                <button type="submit" class="btn text-light" 
+                    name="btnRegisterExamination" value="SubmitRegister"
+                    style="width: 50%; background-color: var(--main-color);">Đặt lịch</button>
+            </div>
+        </form>
+        <!-- Lưu ý -->
+        <div class="appointment__note">
+            <h4 class="appointment__note-title">Lưu ý</h4>
+            <p>1. Lịch hẹn có hiệu lực sau khi có xác nhận chính thức từ Phòng khám HTH.</p>
+            <p>2. Quý khách vui lòng cung cấp thông tin chính xác để được phục vụ tốt nhất.</p>
+            <p>3. Xin vui lòng đặt lịch ít nhất 24 giờ trước khi đến khám.</p>
+            <p>4. Trong trường hợp khẩn cấp, vui lòng đến trực tiếp phòng khám.</p>
+        </div>
+    </div>
 </div>
-<!-- Begin alert message respone from db (*Upgrade to toast message or something else) -->
-<?php
-        if (isset($_SESSION['message'])) {
-            $message = $_SESSION['message'];
-            $messageType = $_SESSION['message_type'];
-        
-            // Hiển thị thông báo bằng cách sử dụng JavaScript alert
-            echo '
-                <script>
-                    alert("' . $_SESSION['message'] . '");
-                </script>
-            ';
-        
-            // Xóa thông báo khỏi session để tránh hiển thị lại sau khi refresh trang
-            unset($_SESSION['message']);
-            unset($_SESSION['message_type']);
-        }
-    ?>
-<!-- End alert message respone from db -->
 
 <?php require_once __DIR__ . "/../UserLayouts/UserFooter.php"; ?>

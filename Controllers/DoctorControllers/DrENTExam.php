@@ -9,6 +9,7 @@ class DrENTExam extends \Core\BaseController
 	protected string $Model = "DoctorModels\DrENTExamModel";
 	public function DrENTExam()
 	{
+		$this->checkAuthDoctor();
 		if (isset($_SESSION['getPatientID'])) {
 			$patientID = $_SESSION['getPatientID'];
 			$checkData = $this->Database->renderInforPatient($patientID);
@@ -26,4 +27,8 @@ class DrENTExam extends \Core\BaseController
 			view('DoctorViews/DrENTExam');
 		}
 	}
+	public function checkAuthDoctor()
+    {
+        if(!isset($_SESSION['doctorInfo']) && empty($_SESSION['doctorInfo'])) redirect('AccountStaffLoginRoute');
+    }
 }

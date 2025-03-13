@@ -18,6 +18,12 @@ body {
   overflow-x: auto;
 }
 
+.disabled {
+  pointer-events: none; /* Không cho phép nhấn */
+  opacity: 0.6; /* Giảm độ trong suốt */
+  cursor: not-allowed; /* Hiển thị biểu tượng chuột không được phép */
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   margin-right: 2px;

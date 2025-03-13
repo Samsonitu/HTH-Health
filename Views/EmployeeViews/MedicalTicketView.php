@@ -41,14 +41,14 @@
                                                     data-service-status="'.$serviceItem['status'].'">
                                                     <div class="col-6">
                                                         <input type="checkbox" 
-                                                        '.($serviceItem['status'] !== '1' ? "disabled" : "").'>
+                                                        '.($serviceItem['status'] === 1 ? "" : "disabled").'>
                                                         <label for="">'.$serviceItem['serviceName'].'</label>
                                                     </div>
                                                     <div class="col-3">
                                                         <span>Trạng thái</span>
                                                         <br>
                                                         <small>
-                                                        '.($serviceItem['status'] === '1' 
+                                                        '.($serviceItem['status'] === 1 
                                                             ? "<b class='text-success'>Sẵn sàng</b>" 
                                                             : "<b class='text-danger'>Chưa sẵn sàng</b>")
                                                             .'

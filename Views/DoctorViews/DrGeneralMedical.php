@@ -31,32 +31,36 @@ $extraJS = [
 					</div>
 				</div>
 				<div class="services__content">
+					<script>
+						console.log(<?= json_encode($_SESSION['resultDataPatient']) ?>)
+					</script>
 					<div class="services__content--heading">Thông tin cá nhân</div>
 					<form class="services__content--form" action=" <?php echo route('DrGeneralMedical') ?>" method="POST">
-						<?php if (isset($_SESSION['getDataPatient'])) {
+						<?php if (isset($_SESSION['resultDataPatient']) && $_SESSION['resultDataPatient']) {
 							echo '
 										<div class="form__item">
-										<input type="hidden" name="patientID" value="' . $_SESSION['getDataPatient'][0]['patienID'] . '">
+										<input type="hidden" name="patientCode" value="' . $_SESSION['resultDataPatient'][0]['patientCode'] . '">
+										<input type="hidden" name="formID" value="' . $_SESSION['resultDataPatient'][0]['formID'] . '">
 										<div class="form__item--group">
 											<label for="">Mã bệnh nhân:</label>
-											<input disabled value="' . $_SESSION['getDataPatient'][0]['patienID'] . '" type="text" class="form__item--input">
+											<input disabled value="' . $_SESSION['resultDataPatient'][0]['patientCode'] . '" type="text" class="form__item--input">
 										</div>
 
 										<div class="form__item--group">
 											<label for="">Tên bệnh nhân:</label>
-											<input disabled type="text" value="' . $_SESSION['getDataPatient'][0]['name'] . '" class="form__item--input">
+											<input disabled type="text" value="' . $_SESSION['resultDataPatient'][0]['patientName'] . '" class="form__item--input">
 										</div>
 
 										<div class="form__item--group">
 											<label for="">Giới tính:</label>
-											<input disabled type="text" value="' . $_SESSION['getDataPatient'][0]['gender'] . '" class="form__item--input">
+											<input style="" disabled type="text" value="' . $_SESSION['resultDataPatient'][0]['patientGender'] . '" class="form__item--input">
 										</div>
 
 									</div>
 									<div class="form__item">
 										<div class="form__item--group">
 											<label for="">Ngày khám:</label>
-											<input disabled type="text" value="' . $_SESSION['getDataPatient'][0]['date'] . '" class="form__item--input">
+											<input disabled type="text" value="' . $_SESSION['resultDataPatient'][0]['createAt'] . '" class="form__item--input">
 										</div>
 
 										<div class="form__item--group">
@@ -66,7 +70,7 @@ $extraJS = [
 
 										<div class="form__item--group">
 											<label for="">Triệu chứng:</label>
-											<textarea rows="3" wrap="soft" disabled class="form__item--input" name="" id="">' . $_SESSION['getDataPatient'][0]['symptoms'] . '</textarea>
+											<textarea rows="3" wrap="soft" disabled class="form__item--input" name="" id="">' . $_SESSION['resultDataPatient'][0]['symptom'] . '</textarea>
 										</div>
 									</div>
 							';
@@ -116,96 +120,96 @@ $extraJS = [
 
 						<div class="services__content--heading mt-3">Thông tin khám bệnh</div>
 
-
-						<div class="form__item">
-							<div class="form__item--group">
-								<label for="">Chiều cao:</label>
-								<input name="height" type="text" required class="form__item--input">
-							</div>
-
-							<div class="form__item--group">
-								<label for="">Cân nặng:</label>
-								<input name="weight" type="text" required class="form__item--input">
-							</div>
-
-							<div class="form__item--group">
-								<label for="">BMI:</label>
-								<input name="bmi" type="text" required class="form__item--input">
-							</div>
-						</div>
-
-						<div class="form__item">
-							<div class="form__item--group">
-								<label for="">Vòng ngực:</label>
-								<input name="chestMeasurement" type="text" required class="form__item--input">
-							</div>
-
-							<div class="form__item--group">
-								<label for="">Vòng bụng:</label>
-								<input name="waistMeasurement" type="text" required class="form__item--input">
-							</div>
-
-							<div class="form__item--group">
-								<label for="">Vòng đùi:</label>
-								<input name="thighMeasurement" type="text" required class="form__item--input">
-							</div>
-						</div>
-
 						<div class="form__item">
 							<div class="form__item--group">
 								<label for="">Huyết áp:</label>
-								<input name="bloodPressure" type="text" required class="form__item--input">
+								<input name="bloodPressure" type="text" required class="form__item--input" tabindex="1">
 							</div>
 
 							<div class="form__item--group">
 								<label for="">Nhịp tim:</label>
-								<input name="heartRate" type="text" required class="form__item--input">
+								<input name="heartRate" type="text" required class="form__item--input" tabindex="2">
 							</div>
 
 							<div class="form__item--group">
-								<label for="">Nhiệt độ:</label>
-								<input name="temperature" type="text" required class="form__item--input">
+								<label for="">Nhiệt độ (C):</label>
+								<input name="temperature" type="text" required class="form__item--input" tabindex="3">
 							</div>
 						</div>
 
 						<div class="form__item">
 							<div class="form__item--group">
 								<label for="">Chức năng hô hấp:</label>
-								<input name="respiratoryFunction" type="text" required class="form__item--input">
+								<input name="respiratoryFunction" type="text" required class="form__item--input" tabindex="4">
 							</div>
 
 							<div class="form__item--group">
 								<label for="">Cholesterol:</label>
-								<input name="cholesterolLevel" type="text" required class="form__item--input">
+								<input name="cholesterol" type="text" required class="form__item--input" tabindex="5">
 							</div>
 
 							<div class="form__item--group">
 								<label for="">Đường huyết:</label>
-								<input name="bloodSugarLevel" type="text" required class="form__item--input">
+								<input name="bloodSugar" type="text" required class="form__item--input" tabindex="6">
+							</div>
+						</div>
+
+						<div class="form__item">
+							<div class="form__item--group">
+								<label for="">Chiều cao (cm):</label>
+								<input name="height" type="text" required class="form__item--input" tabindex="7">
+							</div>
+
+							<div class="form__item--group">
+								<label for="">Cân nặng (kg):</label>
+								<input name="weight" type="text" required class="form__item--input" tabindex="8">
+							</div>
+
+							<div class="form__item--group">
+								<label for="">BMI (kg/m):</label>
+								<input name="bmi" type="text" required class="form__item--input" tabindex="9">
+							</div>
+						</div>
+
+						<div class="form__item">
+							<div class="form__item--group">
+								<label for="">Vòng ngực:</label>
+								<input name="chestMeasurement" type="text" class="form__item--input" tabindex="10">
+							</div>
+
+							<div class="form__item--group">
+								<label for="">Vòng bụng:</label>
+								<input name="waistMeasurement" type="text" class="form__item--input" tabindex="11">
+							</div>
+
+							<div class="form__item--group">
+								<label for="">Vòng đùi:</label>
+								<input name="thighMeasurement" type="text" class="form__item--input" tabindex="12">
 							</div>
 						</div>
 
 						<div class="form__item">
 							<div class="form__item--group">
 								<label for="">Kết luận chung:</label>
-								<textarea name="generalConclusion" required rows="3" wrap="soft" class="form__item--input" id=""></textarea>
+								<textarea name="generalConclusion" required rows="3" wrap="soft" class="form__item--input" tabindex="13"></textarea>
 							</div>
 
 							<div class="form__item--group">
 								<label for="">Bác sĩ dặn dò:</label>
-								<textarea name="doctorInstructions" required rows="3" wrap="soft" class="form__item--input" id=""></textarea>
+								<textarea name="doctorInstructions" required rows="3" wrap="soft" class="form__item--input" tabindex="14"></textarea>
 							</div>
 
 							<div class="form__item--group">
 								<label for="">Ngày hẹn tái khám:</label>
-								<input name="followUpAppointmentDate" type="date" class="form__item--input">
+								<input name="followUpAppointmentDate" type="date" class="form__item--input" tabindex="15">
 							</div>
 						</div>
 
 						<div class="form__button">
-							<button type="reset" class="cancel">Hủy bỏ</button>
-							<button name="submitForm" type="submit" value="Hoàn thành" class="submit">Hoàn thành</button>
+							<button type="reset" class="cancel" tabindex="16">Hủy bỏ</button>
+							<button name="btnInsertData" type="submit" value="Hoàn thành" class="submit" tabindex="17">Hoàn thành</button>
 						</div>
+
 
 					</form>
 				</div>
@@ -227,15 +231,12 @@ $extraJS = [
 			});
 
 			document.querySelector('.cancel').addEventListener('click', function(event) {
-				const isConfirmed = confirm("Bạn có chắc chắn muốn hủy bỏ không?");
+				const isConfirmed = confirm("Bạn có chắc chắn muốn hủy bỏ toàn bộ dữ liệu đã nhập?");
 				if (!isConfirmed) {
 					event.preventDefault();
 				} else {
 					console.log("Hủy bỏ đã được xác nhận.");
-					<?php unset($_SESSION['getPatientID']) ?>
-					<?php unset($_SESSION['getDataPatient']) ?>
-					<?php unset($_SESSION['patientPresent']) ?>
-					window.location.href = '<?php echo route('DrGetPatientID') ?>';
+					window.location.href = '<?php echo route('DrGeneralMedical') ?>';
 				}
 			});
 		</script>

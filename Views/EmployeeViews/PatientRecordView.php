@@ -21,11 +21,6 @@
         $age = $today->diff($birthDate)->y;
         return $age . " tuổi";
     }
-    
-    function formatDate($date) {
-        if (!$date) return "-";
-        return (new DateTime($date))->format('d-m-Y');
-    }
 ?>
 
 <?php require_once __DIR__ . "/../EmployeeLayouts/EmployeeHeader.php"; ?>
